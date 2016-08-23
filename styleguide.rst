@@ -7,7 +7,9 @@ DreamCompute and DreamObjects documentation style guide
 
     `Checklist <#checklist>`_
     `RST Formatting Style <#rst-formatting-style>`_
-    `Content Styling <#content-styling>`_
+    `Grammar and mechanics <#grammar-and-mechanics>`_
+    `Voice, tone, and verb tense <#voice-tone-and-verb-tense>`_
+    `Formatting <#formatting>`_
     `Further reading <#further-reading>`_
 
 Checklist
@@ -41,7 +43,7 @@ each rule later in this guide.
 * Try to break up a 'wall of text' with a bullet or numbered list,
   table, graphic, or outside link.
 
-RST Formatting Style
+RST formatting style
 ~~~~~~~~~~~~~~~~~~~~
 
 * Lines should be wrapped at 80 characters for readability.
@@ -174,7 +176,7 @@ which looks like:
    "Data 1", "Data 2"
    "Data 3", "Data 4"
 
-Code Blocks
+Code blocks
 -----------
 
 It is common to include code examples in tutorials. DreamHost Cloud docs are
@@ -234,7 +236,7 @@ relative to the article and reference it from there, using the following:
 
         Image caption goes here
 
-Bold and Italicized Text
+Bold and italicized text
 ------------------------
 
 Bold and italicized text are allowed in DreamHost Cloud documentation to
@@ -277,11 +279,8 @@ process, include "The following describes how to configure/install X..." If you
 have bulleted points describing how to install or configure something, phrase
 it as "Configure/Install X...".
 
-Content Styling
-~~~~~~~~~~~~~~~
-
 Grammar and mechanics
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Good grammar is like good code: when it's bug free, things work and don't
 break. The following are basic grammar guidelines that ensure
@@ -401,7 +400,7 @@ Of course, there are exceptions.
     Correct: Whose domain is on the list? Its contents are empty.
 
 Voice, tone, and verb tense
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Using a consistent voice and tone also ensures rapid engagement of your
 written content.
@@ -465,7 +464,7 @@ tense to illustrate immediacy:
     "A screen opens which displays all of your domains."
 
 Formatting
-----------
+~~~~~~~~~~
 
 Proper formatting (or, 'information architecture') organizes
 your information for rapid use.
@@ -609,7 +608,7 @@ Further reading
 ~~~~~~~~~~~~~~~
 
 Click any of these links to view further information on how to write technical
-documentation, various style guides, and grammar tutorials.
+documentation, various style guides, and grammar tutorials:
 
 * https://owl.english.purdue.edu/owl/
 * http://www.chicagomanualofstyle.org/home.html
