@@ -1,9 +1,17 @@
 ===================
 Creating code boxes
 ===================
-	
-Creating code boxes from a python script
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Preformatted text
+~~~~~~~~~~~~~~~~~
+   mahbuckat1	2011-04-21T18:05:39.000Z
+   mahbuckat2	2011-04-21T18:05:48.000Z
+   mahbuckat3	2011-04-21T18:07:18.000Z
+   
+   
+
+Creating preformatted code boxes from a python script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * The Cloud team may create a python file with several sections. 
 * This format uses the literalinclude syntax. View http://www.sphinx-doc.org/en/stable/markup/code.html.
@@ -49,9 +57,9 @@ conn = shade.OpenStackCloud()
 
 image = conn.get_image(image_name)
 conn.create_server(image=image, flavor=flavor_id,
-	
-Code for Codebox
-----------------
+
+Code for preformatted Codebox
+-----------------------------
 
 .. literalinclude:: examples/serverpilot.py
     :start-after: step-1
@@ -63,3 +71,5 @@ Code for Codebox
     :start-after: step-5
 	
 * The last step doesn't need an :end-before line.
+
+
