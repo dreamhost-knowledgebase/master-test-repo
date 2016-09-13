@@ -3,7 +3,7 @@ Numbered lists
 ==============
 
 Manually type the number in
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Either collapse your User object, or scroll to the bottom of your expanded
    User object to find the User Controls.
@@ -26,3 +26,22 @@ Manually type the number in
 4. Enter a Sub-user name.
 5. Click the **Add Access Key** button.
     *An Access Key is added.*
+
+	
+Second way to add
+~~~~~~~~~~~~~~~~~
+
+#. Open Cyberduck and select a file.
+
+    .. figure:: images/01_DreamSpeed_CDN_Cache_Settings.fw.png
+
+#. Click the **Get Info** button.
+
+    .. figure:: images/02_DreamSpeed_CDN_Cache_Settings.fw.png
+
+#. Select the 'Metadata' option.
+#. Select the dropdown option to the bottom left and choose 'Cache-Control'.
+
+    .. figure:: images/03_DreamSpeed_CDN_Cache_Settings.fw.png
+
+#. Modify Cache-Control or add a new custom header.

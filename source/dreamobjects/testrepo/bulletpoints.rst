@@ -15,8 +15,8 @@ Bullet points
 
 2nd way
 ~~~~~~~
-    * If you select S3, proceed to Step 5.
-    * If you select Swift, an additional field appears indicating that you
+* If you select S3, proceed to Step 5.
+* If you select Swift, an additional field appears indicating that you
       must create a Sub-user name. DreamObjects Sub-users have full control,
       and are used in combination with the Secret Key to obtain a Swift token
       for future access.
