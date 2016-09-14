@@ -27,13 +27,12 @@ This colors the # blue with bold white text
      # apt-get install python-PROJECTclient
 
 	 
-This colors the # blue with bold white text and add gray text as an output
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+How to color code boxes
+~~~~~~~~~~~~~~~~~~~~~~~
+NOTE: The first line will all be bold white with a blue [server]$
+Anything on the 2nd line is gray
 
-  .. code-block:: console
+.. code-block:: console
 
-     # zypper addrepo -f obs://Cloud:OpenStack:Mitaka/SLE_12_SP1 Mitaka
-
-# would be blue
-zypper addrepo -f obs://Cloud:OpenStack is bold white
-SLE_12_SP1 is gray
+    [server]$ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io s3://SOURCEBUCKET/PATH /DESTINATION/PATH
+              output here dslkjflks jflsk dfljsl kfj sl
