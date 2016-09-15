@@ -23,17 +23,15 @@ Example Commands
 
 **Uploading a file or directory**
 
-.. code:: bash
+.. code-block:: console
 
-    $ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io \
-    /SOURCE/PATH s3://DESTINATIONBUCKET/PATH
+    [server]$ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io /SOURCE/PATH s3://DESTINATIONBUCKET/PATH
 
 **Downloading a file or directory**
 
-.. code::
+.. code-block:: console
 
-    $ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io \
-    s3://SOURCEBUCKET/PATH /DESTINATION/PATH
+    [server]$ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io s3://SOURCEBUCKET/PATH /DESTINATION/PATH
 
 .. meta::
-    :labels: linux mac boto-rsync
+    :labels: linux mac boto-rsync rclone
