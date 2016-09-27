@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="dropshare macos desktop S3 object" name="labels" />
+
+    <title>How to Use Dropshare with DreamObjects</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to Use duck with DreamObjects" href="how-to-use-duck-with-dreamobjects.html" />
+    <link rel="prev" title="How to Use Cyberduck with DreamObjects" href="how-to-use-cyberduck-with-dreamobjects.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-use-dropshare-with-dreamobjects">
+<h1>How to Use Dropshare with DreamObjects</h1>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p><a class="reference external" href="https://getdropsha.re">Dropshare</a> is a so-called menulet for OS X that
+enables you to easily drag&amp;drop files, folders and anything else to your own
+server, DreamObjects, or other cloud services. Once uploaded, the app copies
+the link to the file to your Mac&#8217;s clipboard and you&#8217;re ready to share with
+anyone you like!</p>
+<p>Before you begin, you&#8217;ll need to create a <a class="reference external" href="215321178-What-are-Buckets-in-DreamObjects-and-How-Do-You-Use-Them-">bucket</a> on the
+<a class="reference external" href="https://panel.dreamhost.com/index.cgi?tree=cloud.objects&amp;">(Panel &gt; &#8216;Cloud Services&#8217; &gt; DreamObjects&#8217;</a>) page.</p>
+<div class="section" id="configure-dropshare">
+<h3>Configure Dropshare</h3>
+<ol class="arabic">
+<li><p class="first"><a class="reference external" href="http://getdropsha.re">Download the latest release from the Dropshare site</a>.</p>
+</li>
+<li><p class="first">Launch Dropshare and click the Dropshare menulet to expand the app. Click
+the gear icon and go to Preferences.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/01-dropshare.png" src="../../_images/01-dropshare.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Click the &#8216;Connections&#8217; menu item in the Preference pane.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/02-dropshare.png" src="../../_images/02-dropshare.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Delete the default SCP connection then click <strong>Custom S3 API-Compliant
+Connection</strong> to create a DreamObjects connection.</p>
+<div class="figure">
+<img alt="../../_images/03-dropshare.png" src="../../_images/03-dropshare.png" />
+</div>
+</li>
+<li><p class="first">Enter your DreamObjects Bucket name, Access and Secret keys. Visit the
+<a class="reference external" href="215986357-What-are-Keys-in-DreamObjects-and-How-Do-You-Use-Them-">DreamObjects keys</a> article for details.</p>
+<p>Use <strong>objects.dreamhost.com</strong> for the server. Also be sure to check the
+boxes for <strong>Use SSL</strong> and <strong>Use AWS v2 Signature</strong>.</p>
+<div class="figure">
+<img alt="../../_images/04-dropshare.png" src="../../_images/04-dropshare.png" />
+</div>
+</li>
+<li><p class="first">Click the <strong>Test connection</strong> button. This will copy a URL to your
+clipboard.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/05-dropshare.png" src="../../_images/05-dropshare.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Open a browser window and paste the URL into the address bar. You should
+see the test image below.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/06-dropshare.png" src="../../_images/06-dropshare.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Return to the Dropshare Preference pane and click the <strong>Save &amp; Close</strong>
+button and close the preference pane. Dropshare is now configured for
+use with your DreamObjects bucket!</p>
+<div class="figure">
+<img alt="../../_images/07-dropshare.png" src="../../_images/07-dropshare.png" />
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

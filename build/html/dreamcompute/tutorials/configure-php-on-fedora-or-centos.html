@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="php fedora centos" name="labels" />
+
+    <title>How to Configure PHP on DreamCompute running Fedora or CentOS</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to deploy Dokku on Ubuntu using cloud-init" href="deploy-dokku-with-cloud-init.html" />
+    <link rel="prev" title="How to Configure PHP on DreamCompute running Debian or Ubuntu" href="configure-php-on-debian-or-ubuntu.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-configure-php-on-dreamcompute-running-fedora-or-centos">
+<h1>How to Configure PHP on DreamCompute running Fedora or CentOS</h1>
+<p>PHP is a popular server-side scripting language used by many web software and
+non-web software packages, and popular with DreamHost customers.  PHP is an
+important part of LAMP (Linux, Apache, MySQL, PHP) stacks as well as other AMP
+stacks.  You can use it for your DreamCompute instance as well, and the
+following information helps you install and configure it.  These instructions
+assume you run a Fedora- or CentOS-based system as they have their own
+specific configuration and file hierarchy.</p>
+<div class="section" id="installing-php">
+<h2>Installing PHP</h2>
+<p>PHP comes in different configuration packages on Debian and Ubuntu systems to
+meet your needs for the command line interface (CLI) client or the apache
+module (mod_php aka libphp5.so) or other specializations.</p>
+<div class="section" id="php-apache-module-cli-only">
+<h3>PHP Apache Module + CLI Only</h3>
+<p>To install the main PHP package, run the following yum command:</p>
+<div class="code highlight-python"><div class="highlight"><pre><span></span>yum install php
+</pre></div>
+</div>
+<p>This installs the php-cli, php apache module and apache if it isn&#8217;t selected
+already.</p>
+</div>
+<div class="section" id="php-modules-for-databases">
+<h3>PHP Modules for Databases</h3>
+<p>There are additional packages available to install modules for various
+database engines.  Here are some of the more common ones that can use apt-get
+to be installed.</p>
+<ul>
+<li><p class="first"><strong>php-mysqlnd</strong></p>
+<p>This package contains the mysql, mysqli and PDO mysql modules for PHP using
+the MySQL Native Driver which is newer and generally faster.</p>
+</li>
+<li><p class="first"><strong>php-pgsql</strong></p>
+<p>The package containing the pgsql and pdo_pgsql modules for use with
+PostgreSQL.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="optional-php-modules">
+<h3>Optional PHP Modules</h3>
+<p>These modules add additional features of functionality to PHP depending on
+your needs.  Some of the more common ones will be listed below, with a link
+to all available packages at the bottom.</p>
+<ul>
+<li><p class="first"><strong>php-gd</strong></p>
+<p>The GD library provides image manipulation features which can be useful for
+some applications.</p>
+</li>
+</ul>
+<p>Additional modules for php5 can be found on the respective packages pages for
+each operating system or by issuing the below yum command:</p>
+<div class="code highlight-python"><div class="highlight"><pre><span></span>yum list php-\*
+</pre></div>
+</div>
+<p><a class="reference external" href="https://admin.fedoraproject.org/pkgdb/packages/php-%2A/">Fedora Packages for PHP5</a></p>
+</div>
+</div>
+<div class="section" id="configuration-files">
+<h2>Configuration Files</h2>
+<p>For Fedora- or CentOS-based systems, the default is to have only one
+configuration file for all methods of using php.</p>
+<ul>
+<li><p class="first"><strong>/etc/php.ini</strong></p>
+<p>The php.ini file used for the PHP CLI, apache module and any other php
+methods.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

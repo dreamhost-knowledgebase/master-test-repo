@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="ssh key mac linux windows" name="labels" />
+
+    <title>How to upload an SSH key via the Cloud Control Panel</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="What is DreamCompute" href="what-is-dreamcompute.html" />
+    <link rel="prev" title="How to upload an SSH key via the web UI" href="ssh-keys-and-dreamcompute.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-upload-an-ssh-key-via-the-cloud-control-panel">
+<h1>How to upload an SSH key via the Cloud Control Panel</h1>
+<p>DreamCompute utilizes ssh keys for accessing your servers for increased
+security and simplified user management. On first boot, your public key is
+injected into the server for the default user. This enables passwordless logins
+and prevents unnecessary file modifications on startup.</p>
+<p>SSH key pairs contain a private key and a public key. Hang on to your private
+key and keep it secret. The public key ends with a &#8221;.pub&#8221; extension and will
+be injected into your server.</p>
+<div class="section" id="existing-ssh-key">
+<h2>Existing SSH key</h2>
+<p>If you&#8217;re using Mac or Linux, you may already have SSH keys. If so, they are
+typically stored in the hidden .ssh directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls ~/.ssh/
+/home/myuser/.ssh/id_rsa  /home/myuser/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>If you&#8217;re using Windows, there&#8217;s a good chance you&#8217;re using <a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>.
+SSH keys generated on Windows systems using the generator (puttygen.exe)
+are not stored in a uniform location, but instead where the user chooses
+to save them.</p>
+</div>
+<div class="section" id="create-a-new-ssh-key">
+<h2>Create a new SSH key</h2>
+<div class="section" id="windows-via-puttygen">
+<h3>Windows via PuTTYgen</h3>
+<p>PuTTYgen is an SSH key generator program for Windows. It is included in the
+PuTTY MSI installer package that can be downloaded from the <a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> website.</p>
+<div class="figure">
+<img alt="PuTTY" src="../../_images/Puttygen.png" />
+</div>
+<p>Start the program, click on the &#8220;generate&#8221; button, and follow the instructions
+displayed. When complete, click the &#8220;save private key&#8221; button to
+save the .ppk (PuTTY Private Key File) file for use with PuTTY later.</p>
+<p>The text at the top labeled &#8220;Public key for pasting into OpenSSH
+authorized_keys file&#8221; can be copy/pasted into a text file for importing into
+the Cloud Control Panel and other future uses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The &#8220;save public key&#8221; button saves a modified version of the public
+key that won&#8217;t directly import into the Cloud Control Panel.</p>
+</div>
+</div>
+<div class="section" id="mac-and-linux-via-ssh-keygen">
+<h3>Mac and Linux via ssh-keygen</h3>
+<p>ssh-keygen is a command line key generator tool included on Mac, Linux and
+other unix-based operating systems. Run it in your terminal app.</p>
+<div class="code highlight-python"><div class="highlight"><pre><span></span>$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/myuser/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/myuser/.ssh/id_rsa.
+Your public key has been saved in /home/myuser/.ssh/id_rsa.pub.
+The key fingerprint is:
+66:d9:a4:f0:8d:0b:72:93:b8:67:2e:af:f6:91:ce:e3 myuser@mycomputer
+The key&#39;s randomart image is:
++--[ RSA 2048]----+
+|                 |
+|                 |
+|      .   .      |
+|     . + B       |
+|    o = S o      |
+|     + * .       |
+|    . = .        |
+|    o*..         |
+|   ..*E.         |
++-----------------+
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Defaults are in parentheses. A password is recommended but not
+required.</p>
+</div>
+</div>
+</div>
+<div class="section" id="upload-ssh-public-key">
+<h2>Upload SSH public key</h2>
+<p>Click the LAUNCH A SERVER button in the Cloud Control Panel.</p>
+<div class="figure">
+<img alt="../../_images/import-ssh-button-sunrise.png" src="../../_images/import-ssh-button-sunrise.png" />
+</div>
+<p>Click the IMPORT SSH PUBLIC KEY button</p>
+<div class="figure">
+<img alt="../../_images/import-ssh-sunrise.png" src="../../_images/import-ssh-sunrise.png" />
+</div>
+<p>Give your SSH key a name and paste the contents of your SSH public key into
+the field. Click the IMPORT SSH PUBLIC KEY button when done to save it.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ensure you paste the <strong>public</strong> key into the field. It has an
+extension of &#8221;.pub&#8221;</p>
+</div>
+<p>Now that you&#8217;ve uploaded your key, you can launch a server and <a class="reference external" href="https://help.dreamhost.com/hc/en-us/articles/216201547">connect to it
+using an SSH client</a>
+like PuTTY or Terminal.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

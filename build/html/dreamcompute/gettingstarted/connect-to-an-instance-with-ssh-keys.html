@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="ssh key mac linux windows" name="labels" />
+
+    <title>Connect to your instance with ssh keys</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="What’s the difference between ephemeral and volume boot disks?" href="different-boot-disks-explained.html" />
+    <link rel="prev" title="What is DreamCompute Predictable Bill" href="billing-faq.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="connect-to-your-instance-with-ssh-keys">
+<h1>Connect to your instance with ssh keys</h1>
+<p>Once you have your SSH key created and imported into
+the dashboard, you can go ahead and create your
+instances.  Please make sure to select the keypair you
+wish to use on the &#8220;Access &amp; Security&#8221; tab of the
+instance creation screen.  For ssh to work it is
+required that port 22 is open in your selected
+security group in the DreamCompute
+<a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__security_groups_tab">Access &amp; Security - Security Group</a>
+dashboard.</p>
+<div class="section" id="using-windows">
+<h2>Using Windows</h2>
+<p>A common program for ssh on windows is
+<a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/?">PuTTY</a>
+or <a class="reference external" href="http://sourceforge.net/projects/putty-nd/">putty-nd</a>
+.  PuTTY requires that you convert your
+private key into a .ppk file before it can be used to
+connect via ssh.  To do this, open up the PuTTY Key
+Generator (puttygen.exe), click the Conversions menu
+then &#8220;Import Key&#8221;.  Browse to the folder that contains
+the *.pem file you downloaded from the DreamCompute
+dashboard, or the private key you created outside the
+Dashboard.  You can give the key a name in the &#8220;Key
+comment&#8221; field, and when finished click the &#8220;Save
+private key&#8221; button to save it into a .ppk file.</p>
+<p>Now you can open PuTTY and navigate to the Connection
+-&gt; SSH -&gt; Auth setting page to click the &#8220;browse&#8221;
+button near the &#8220;Private key file for authentication&#8221;
+field.  Select the .ppk file you generated and then
+click open.  You can now navigate to the &#8220;Session&#8221;
+setting page, and enter into the host name field
+&#8220;dhc-user&#64;&#8221; followed immediately by your instance&#8217;s
+public ip address.  If using CoreOS, use &#8220;core&#64;&#8221; instead
+of &#8220;dhc-user&#64;&#8221;.  Click Open to start your session.</p>
+</div>
+<div class="section" id="using-mac-linux">
+<h2>Using Mac &amp; Linux</h2>
+<p>On Unix based systems, the ssh key will need to be setup
+first.  There are several ways to do this:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Configure as your main key</dt>
+<dd><ul class="first last simple">
+<li>Copy the key or .pem file to your home directory,
+to the ~/.ssh/id_rsa file.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Configure as an alternative key</dt>
+<dd><ul class="first simple">
+<li>Copy the key or .pem file to a safe place, and then edit
+your ~/.ssh/config file to specify that connections to
+that specific host will use this alternate key.</li>
+</ul>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>Host IPADDRESS
+IdentityFile ~/path/to/key
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The final step is to connect via ssh (replace &#8220;dhc-user&#8221; with &#8220;core&#8221; if using
+CoreOS):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh dhc-user@IPADDRESS
+Welcome to Ubuntu 12.04.2 LTS <span class="o">(</span>GNU/Linux
+3.5.0-23-generic x86_64<span class="o">)</span>
+dhc-user@example:~$
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>No configuration, specifying the key on the command line</dt>
+<dd><ul class="first last simple">
+<li>Connect via ssh -i ~/path/to/key <a class="reference external" href="mailto:dhc-user&#37;&#52;&#48;IPADDRESS">dhc-user<span>&#64;</span>IPADDRESS</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

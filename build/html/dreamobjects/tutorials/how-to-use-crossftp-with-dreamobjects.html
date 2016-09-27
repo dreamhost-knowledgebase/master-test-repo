@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="crossftp desktop client bucket windows" name="labels" />
+
+    <title>How to Use CrossFTP with DreamObjects</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to Use Cyberduck with DreamObjects" href="how-to-use-cyberduck-with-dreamobjects.html" />
+    <link rel="prev" title="How to Use CloudBerry Backup with DreamObjects" href="how-to-use-cloudberry-backup-with-dreamobjects.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-use-crossftp-with-dreamobjects">
+<h1>How to Use CrossFTP with DreamObjects</h1>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p><a class="reference external" href="http://www.crossftp.com/">CrossFTP</a> is a powerful FTP and S3 client that
+you can use to connect to DreamHost&#8217;s DreamObjects service. It is available
+on Windows, Mac, and Linux. This article describes how to connect to your
+DreamObjects account using CrossFTP.</p>
+<div class="figure">
+<img alt="../../_images/Banner_crossftp11.png" src="../../_images/Banner_crossftp11.png" />
+</div>
+</div>
+<div class="section" id="connecting-to-crossftp-with-dreamobjects">
+<h2>Connecting to CrossFTP with DreamObjects</h2>
+<p>To set up CrossFTP to use with your DreamObjects account:</p>
+<ol class="arabic">
+<li><p class="first">Open CrossFTP and select Site Manager. You can do this by clicking the
+&#8216;Sites&#8217; tab and selecting &#8216;Site Manager&#8217;, or by clicking F9 on your
+keyboard.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/01_CrossFTP.fw.png" src="../../_images/01_CrossFTP.fw.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Select a Category in the left window pane. For example, click the &#8216;Default&#8217;
+folder.</p>
+</li>
+<li><p class="first">Click the <strong>New Site</strong> button on the bottom left. A pop-up window opens.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/02_CrossFTP.fw.png" src="../../_images/02_CrossFTP.fw.png" />
+</div>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>Enter the following settings within the General tab:</dt>
+<dd><ul class="first simple">
+<li><strong>Protocol</strong>: Select &#8216;S3&#8217; from the drop down list.</li>
+<li><strong>Label</strong>: DreamObjects &lt;Bucket_Name_Here&gt; (In this example, the bucket
+name is &#8216;bucketexample&#8217;.)</li>
+<li><strong>Host</strong>: objects-us-west-1.dream.io</li>
+<li><strong>Port</strong>: 80</li>
+<li><strong>Access Key</strong> and <strong>Secret</strong>: You can find your access/secret key
+within the (<a class="reference external" href="https://panel.dreamhost.com/index.cgi?tree=cloud.objects&amp;">Panel &gt; ‘Cloud Services’ &gt; ‘DreamObjects’</a>) section
+of the panel. Click on your DreamObjects username, and then the access
+key appears below it along with the secret key to the right:</li>
+</ul>
+<div class="figure">
+<img alt="../../_images/03_CrossFTP.fw.png" src="../../_images/03_CrossFTP.fw.png" />
+</div>
+<ul class="last simple">
+<li><strong>Remote Path</strong>: &lt;Bucket_Name_Here&gt; (In this example, the remote path is
+&#8216;bucketexample&#8217;.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">When finished entering the above settings, click the <strong>Apply</strong> button.</p>
+</li>
+<li><p class="first">Click the <strong>Connect</strong> button to connect to DreamObjects.</p>
+</li>
+</ol>
+<p>CrossFTP now connects to your DreamObjects bucket.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

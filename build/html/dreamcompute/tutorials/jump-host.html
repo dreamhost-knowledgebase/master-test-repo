@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="ssh nova windows mac linux desktop dashboard" name="labels" />
+
+    <title>How to SSH to an Instance Without a Public IP Address</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to launch a DreamCompute server with Ansible" href="launch-an-instance-with-ansible.html" />
+    <link rel="prev" title="How to Migrate Volumes Between DreamCompute Clusters" href="how-to-migrate-volumes-between-clusters.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-ssh-to-an-instance-without-a-public-ip-address">
+<h1>How to SSH to an Instance Without a Public IP Address</h1>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p>If you have private networking enabled in DreamCompute, you may use
+it to expose some servers to the
+internet while limiting access to others on the private network. For
+example, you may want your web server exposed on port 80 or 443 while
+keeping your database access restricted to only the private network.
+One complication of this configuration is how to access your private
+instances without a floating IP address. The answer to that is to use
+a jump host.</p>
+</div>
+<div class="section" id="how-it-works">
+<h2>How it works</h2>
+<p>A jump (or bastion) host acts as a middleman for all traffic to your
+non-public instances and is easy to set up using SSH and its
+configuration options. The first thing you want to do is to make sure
+you have an instance running with a floating IP address. This could be
+any DreamCompute instance with a floating IP, but you&#8217;d typically use
+a dedicated jump host or your web server in the example above. Ensure
+you can SSH into that machine with your SSH key. If you need
+instructions for that, check out <a class="reference external" href="214843617-How-to-upload-an-SSH-key-via-the-web-UI">how to upload SSH keys in
+DreamCompute</a>.</p>
+</div>
+<div class="section" id="configuring-a-jump-host-in-dreamcompute">
+<h2>Configuring a Jump Host in DreamCompute</h2>
+<p>The following example shows a setup of an SSH config file
+(~/.ssh/config) on a local machine so that it can connect first to a
+jump host called “jump”.</p>
+<ol class="arabic">
+<li><p class="first">Enter the following:</p>
+<blockquote>
+<div><div class="code highlight-python"><div class="highlight"><pre><span></span>Host jump
+HostName X.X.X.X #Replace with your Floating IP Address
+User dhc-user
+IdentityFile ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<ul class="simple">
+<li>Replace &#8220;X.X.X.X&#8221; with the floating IP address for your instance in the
+HostName option.</li>
+<li>Be sure you’re using the correct public key.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Ensure you can log into your jump host with SSH:</p>
+<blockquote>
+<div><div class="code highlight-python"><div class="highlight"><pre><span></span>ssh jump
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Once you verify that it works, update the SSH config to send all
+traffic from your machine to the private DreamCompute network
+through a proxy on the jump host by entering the following:</p>
+<blockquote>
+<div><div class="code highlight-python"><div class="highlight"><pre><span></span>Host 10.10.10.*
+ProxyCommand ssh jump -W %h:%p
+User dhc-user
+IdentityFile ~/.ssh/dreamcompute.pem
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>This example uses a separate key for private instances
+rather than the jump host, which allows you to keep both
+keys on your machine - the jump host doesn&#8217;t need the
+private key for the other instances. This provides an extra
+level of security.</li>
+<li>The -W option forwards all stdin and stdout to the specified
+host and port.</li>
+</ul>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">To connect to your private instances from a local machine, SSH to
+the private IP:</p>
+<blockquote>
+<div><div class="code highlight-python"><div class="highlight"><pre><span></span>ssh 10.10.10.5
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

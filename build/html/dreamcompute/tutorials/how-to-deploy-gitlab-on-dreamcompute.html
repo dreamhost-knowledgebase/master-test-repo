@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="gitlab" name="labels" />
+
+    <title>How to setup GitLab on DreamCompute</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to Install libmodsecurity + Nginx on Ubuntu 14.04" href="how-to-install-libmodsec-with-nginx.html" />
+    <link rel="prev" title="How to create and mount volumes on DreamCompute" href="how-to-create-and-mount-volumes-on-dreamcompute.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-setup-gitlab-on-dreamcompute">
+<h1>How to setup GitLab on DreamCompute</h1>
+<div class="section" id="setting-up">
+<h2>Setting up</h2>
+<p>Before you can put GitLab on a DreamCompute server, you must first have an
+server running. I recommend launching an Ubuntu 16.04 server. You can launch a
+server using the Web UI.  Your server must have at least 2GB of RAM in order
+to run GitLab properly, although more is better (especially if you have lots
+of users). GitLab will install if you have less than 2GB of RAM, but you will
+run into weird errors, like 500 errors when you visit the site. For more info
+about system requirements, visit
+<a class="reference external" href="http://docs.gitlab.com/ee/install/requirements.html#hardware-requirements">http://docs.gitlab.com/ee/install/requirements.html#hardware-requirements</a> . It
+is also recommended that you run GitLab on a volume backed instance, for more
+info on this, visit our <a class="reference external" href="215912848">tutorial on launching instances</a></p>
+</div>
+<div class="section" id="installing-gitlab">
+<h2>Installing GitLab</h2>
+<p>Once you have an Ubuntu 16.04 server running, ssh in with</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ssh dhc-user@floatingip
+</pre></div>
+</div>
+<p>replacing &#8220;floatingip&#8221; with the ip address of your server, then run</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>sudo apt install postfix
+</pre></div>
+</div>
+<p>In the postfix installer, select &#8220;Internet site&#8221;. In order to get the package
+for GitLab and install it run the following.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/xenial/gitlab-ce_8.8.4-ce.0_amd64.deb/download
+sudo dpkg -i gitlab-ce_8.8.4-ce.0_amd64.deb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The url that you curl may be different, go to
+<a class="reference external" href="https://packages.gitlab.com/gitlab/gitlab-ce">https://packages.gitlab.com/gitlab/gitlab-ce</a> to find the newest version of
+GitLab.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>sudo gitlab-ctl reconfigure
+</pre></div>
+</div>
+<p>Congrats, you are now running GitLab. The last thing you need to do is visit
+gitlab in a web browser by going to the ip of your server, then use the webpage
+to change the password for root.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

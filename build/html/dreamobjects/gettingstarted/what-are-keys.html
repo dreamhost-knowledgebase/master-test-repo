@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="key" name="labels" />
+
+    <title>What are Keys in DreamObjects and How Do You Use Them?</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="What are Objects in DreamObjects and How Do You Use Them?" href="what-are-objects.html" />
+    <link rel="prev" title="What are Buckets in DreamObjects and How Do You Use Them?" href="what-are-buckets.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-are-keys-in-dreamobjects-and-how-do-you-use-them">
+<h1>What are Keys in DreamObjects and How Do You Use Them?</h1>
+<div class="section" id="keys">
+<h2>Keys</h2>
+<p>Each user has at least one Key Pair set which consists of the following:</p>
+<ul class="simple">
+<li>a 20 character Access Key (similar to a username for a bucket), and</li>
+<li>a 40 character Secret Key (similar to a password for a bucket and
+automatically generated).</li>
+</ul>
+<p>The panel uses these credentials to access your buckets and objects, or in the
+case of Swift, to obtain a Swift token for future access.</p>
+<p>To view your keys, click on your username:</p>
+<div class="figure">
+<img alt="../../_images/06_DHO_End_User_Guide.fw.png" src="../../_images/06_DHO_End_User_Guide.fw.png" />
+</div>
+<ul class="simple">
+<li>Most third party clients like Cyberduck, as well as APIs and tools that are
+written using the API, also use these credentials to gain access to the
+DreamObjects programmatic cluster.</li>
+<li>A user can have multiple keys to provide fine grain access.</li>
+<li>Removing a key pair removes access for any application using it.</li>
+</ul>
+<div class="section" id="copying-your-access-key">
+<h3>Copying your Access Key</h3>
+<p>As a convenience, when you click an Access Key or Secret Key the text is
+selected (though not copied to the clipboard). Once the key is highlighted, you
+can copy it by clicking <strong>CTRL + C</strong> on your keyboard and then paste it by
+clicking <strong>CTRL + V</strong>.</p>
+</div>
+<div class="section" id="adding-a-key-pair">
+<h3>Adding a Key Pair</h3>
+<ol class="arabic">
+<li><p class="first">Either collapse your User object, or scroll to the bottom of your expanded
+User object to find the User Controls.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/07_DHO_End_User_Guide.fw.png" src="../../_images/07_DHO_End_User_Guide.fw.png" />
+</div>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>Click the <strong>Add Key</strong> button.</dt>
+<dd><p class="first"><em>A drop-down list appears allowing you to choose S3 or Swift:</em></p>
+<div class="last figure">
+<img alt="../../_images/08_DHO_End_User_Guide.fw.png" src="../../_images/08_DHO_End_User_Guide.fw.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Select either S3 or Swift.</dt>
+<dd><ul class="first simple">
+<li>If you select S3, proceed to Step 5.</li>
+<li>If you select Swift, an additional field appears indicating that you
+must create a Sub-user name. DreamObjects Sub-users have full control,
+and are used in combination with the Secret Key to obtain a Swift token
+for future access.</li>
+</ul>
+<div class="last figure">
+<img alt="../../_images/09_DHO_End_User_Guide.fw.png" src="../../_images/09_DHO_End_User_Guide.fw.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Enter a Sub-user name.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Click the <strong>Add Access Key</strong> button.</dt>
+<dd><p class="first last"><em>An Access Key is added.</em></p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="deleting-a-key-pair">
+<h3>Deleting a Key Pair</h3>
+<ol class="arabic">
+<li><p class="first">Navigate to the Key Pair you wish to delete and then locate the Remove Key
+button on the right-hand side of that row.</p>
+<blockquote>
+<div><div class="figure">
+<img alt="../../_images/10_DHO_End_User_Guide.fw.png" src="../../_images/10_DHO_End_User_Guide.fw.png" />
+</div>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>Click the <strong>Remove Key</strong> button.</dt>
+<dd><p class="first"><em>A confirmation dialog box opens:</em></p>
+<div class="last figure">
+<img alt="../../_images/11_DHO_End_User_Guide.fw.png" src="../../_images/11_DHO_End_User_Guide.fw.png" />
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Deleting the Key Pair will result in a loss of access for all
+clients and scripts that have been using that Key Pair.</p>
+</div>
+<ol class="arabic" start="3">
+<li><dl class="first docutils">
+<dt>Click the <strong>Remove</strong> button.</dt>
+<dd><p class="first last"><em>The Key Pair is deleted.</em></p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
