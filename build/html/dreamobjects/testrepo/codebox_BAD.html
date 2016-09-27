@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creating code boxes</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="Preformatted dark gray text option 3" href="codebox_python.html" />
+    <link rel="prev" title="Creating code boxes" href="codebox.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="creating-code-boxes">
+<h1>Creating code boxes</h1>
+<div class="section" id="preformatted-bold-white-text">
+<h2>Preformatted bold white text</h2>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;place access key here&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_SECRET_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;place secret key here&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_CANONICAL_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;your DHO Username&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_CANONICAL_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;Also your DHO Username!&#39;</span><span class="p">);</span>
+<span class="nv">$HOST</span> <span class="o">=</span> <span class="s1">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">;</span>
+
+<span class="c1">// require the amazon sdk for php library</span>
+<span class="k">require_once</span> <span class="s1">&#39;AWSSDKforPHP/sdk.class.php&#39;</span><span class="p">;</span>
+
+<span class="c1">// Instantiate the S3 class and point it at the desired host</span>
+<span class="nv">$Connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AmazonS3</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;key&#39;</span>            <span class="o">=&gt;</span> <span class="nx">AWS_KEY</span><span class="p">,</span>
+        <span class="s1">&#39;secret&#39;</span>         <span class="o">=&gt;</span> <span class="nx">AWS_SECRET_KEY</span><span class="p">,</span>
+        <span class="s1">&#39;canonical_id&#39;</span>   <span class="o">=&gt;</span> <span class="nx">AWS_CANONICAL_ID</span><span class="p">,</span>
+        <span class="s1">&#39;canonical_name&#39;</span> <span class="o">=&gt;</span> <span class="nx">AWS_CANONICAL_NAME</span><span class="p">,</span>
+<span class="p">));</span>
+<span class="nv">$Connection</span><span class="o">-&gt;</span><span class="na">set_hostname</span><span class="p">(</span><span class="nv">$HOST</span><span class="p">);</span>
+<span class="nv">$Connection</span><span class="o">-&gt;</span><span class="na">allow_hostname_override</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Preformatted bold white text</h2>
+<p>NOTE: The closing title must be unique</p>
+<div class="highlight-perl"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nn">Amazon::</span><span class="n">S3</span><span class="p">;</span>
+<span class="k">my</span> <span class="nv">$access_key</span> <span class="o">=</span> <span class="s">&#39;put your access key here!&#39;</span><span class="p">;</span>
+<span class="k">my</span> <span class="nv">$secret_key</span> <span class="o">=</span> <span class="s">&#39;put your secret key here!&#39;</span><span class="p">;</span>
+
+<span class="k">my</span> <span class="nv">$conn</span> <span class="o">=</span> <span class="nn">Amazon::</span><span class="n">S3</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">({</span>
+        <span class="n">aws_access_key_id</span>     <span class="o">=&gt;</span> <span class="nv">$access_key</span><span class="p">,</span>
+        <span class="n">aws_secret_access_key</span> <span class="o">=&gt;</span> <span class="nv">$secret_key</span><span class="p">,</span>
+        <span class="n">host</span>                  <span class="o">=&gt;</span> <span class="s">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">,</span>
+        <span class="n">secure</span>                <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">retry</span>                 <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s3-perl-listing-owned-bucketz">
+<span id="id2"></span><h2>Preformatted bold white text</h2>
+<p>This creates 2 preformatted boxes.</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="no">AWS</span><span class="o">.</span><span class="n">config</span><span class="p">(</span>
+    <span class="ss">:s3_endpoint</span>        <span class="o">=&gt;</span> <span class="s1">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">,</span>
+    <span class="ss">:access_key_id</span>      <span class="o">=&gt;</span> <span class="s1">&#39;my-access-key&#39;</span><span class="p">,</span>
+    <span class="ss">:secret_access_key</span>  <span class="o">=&gt;</span> <span class="s1">&#39;my-secret-key&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Instantiate a client object</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="no">AWS</span><span class="o">::</span><span class="no">S3</span><span class="o">.</span><span class="n">new</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-following-puts-a-gray-box-around-the-command-line-box">
+<span id="s3-aws-listing-owned-bucketz"></span><h2>The following puts a gray box around the command line box.</h2>
+<div class="code bash highlight-python"><div class="highlight"><pre><span></span>$ rclone config
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; n
+</pre></div>
+</div>
+<p>This is what is added to Zendesk</p>
+<p>&lt;div class=&#8221;code bash highlight-python&#8221;&gt;
+&lt;div class=&#8221;highlight&#8221;&gt;
+&lt;pre&gt;$ rclone config
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&amp;gt; n
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;</p>
+</div>
+<div class="section" id="this-incorrectly-adds-a-gray-background-to-the-cmd-line-box">
+<h2>This incorrectly adds a gray background to the cmd line box</h2>
+<p><a class="reference external" href="https://help.dreamhost.com/hc/en-us/articles/218004377-DreamSpeed-CDN-Advanced-Cache-Settings">https://help.dreamhost.com/hc/en-us/articles/218004377-DreamSpeed-CDN-Advanced-Cache-Settings</a></p>
+<div class="code highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">boto.s3.connection</span> <span class="kn">import</span> <span class="n">S3Connection</span>
+
+<span class="c1"># Replace with your DreamObjects access key and secret key</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">S3Connection</span><span class="p">(</span><span class="s1">&#39;Your_Access_Key&#39;</span><span class="p">,</span> <span class="s1">&#39;Your_Secret_Key&#39;</span><span class="p">,</span>
+<span class="n">host</span><span class="o">=</span><span class="s1">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">)</span>
+
+<span class="c1"># Change Your_Bucket_Name to the name of the bucket with CDN enabled</span>
+<span class="n">bucket</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">get_bucket</span><span class="p">(</span><span class="s1">&#39;Your_Bucket_Name&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">list</span><span class="p">():</span>
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">):</span>
+    <span class="n">contentType</span> <span class="o">=</span> <span class="s1">&#39;image/jpeg&#39;</span>
+<span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">):</span>
+    <span class="n">contentType</span> <span class="o">=</span> <span class="s1">&#39;image/png&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">continue</span>
+
+<span class="n">key</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="n">contentType</span><span class="p">,</span>
+    <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="s1">&#39;max-age= 2592000&#39;</span>
+<span class="p">})</span>
+<span class="n">key</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">.</span><span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+    <span class="n">preserve_acl</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bold-white-text">
+<h2>Bold white text</h2>
+<p><a class="reference external" href="https://help.dreamhost.com/hc/en-us/articles/214834357-Upload-Screen-Shots-to-DreamObjects">https://help.dreamhost.com/hc/en-us/articles/214834357-Upload-Screen-Shots-to-DreamObjects</a></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install boto
+</pre></div>
+</div>
+</div>
+<div class="section" id="gray-text">
+<h2>Gray text</h2>
+<p><a class="reference external" href="https://help.dreamhost.com/hc/en-us/articles/214834357-Upload-Screen-Shots-to-DreamObjects">https://help.dreamhost.com/hc/en-us/articles/214834357-Upload-Screen-Shots-to-DreamObjects</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s1">&#39;scrot&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

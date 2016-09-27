@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="boot volume" name="labels" />
+
+    <title>What’s the difference between ephemeral and volume boot disks?</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How To Activate DreamCompute zone US-East 2" href="how-to-activate-us-east-2.html" />
+    <link rel="prev" title="Connect to your instance with ssh keys" href="connect-to-an-instance-with-ssh-keys.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-the-difference-between-ephemeral-and-volume-boot-disks">
+<h1>What&#8217;s the difference between ephemeral and volume boot disks?</h1>
+<div class="section" id="different-boot-sources">
+<h2>Different Boot Sources</h2>
+<p>There are several different kinds of sources to boot from in the DreamCompute
+panel, but they all need to create some sort of virtual disk for the virtual
+machine to boot. The virtual disk can be either an <em>ephemeral</em> or <em>volume</em> boot
+disk. In the DreamCompute panel you see the options:</p>
+<ul class="simple">
+<li><strong>Image</strong>: Creates an ephemeral disk from the image you choose.</li>
+<li><strong>Volume</strong>: Boots an instance from an existing bootable volume.</li>
+<li><strong>Image (create a new volume)</strong>: Creates a bootable volume from the image
+you choose and then boots an instance from it.</li>
+<li><strong>Volume snapshot (create a new volume)</strong>: Creates a volume from the
+volume snapshot you choose and boots an instance from it.</li>
+</ul>
+</div>
+<div class="section" id="ephemeral-boot-disks">
+<h2>Ephemeral Boot Disks</h2>
+<p>Ephemeral disks are virtual disks that are created for the sole purpose of
+booting a virtual machine and should be thought of as temporary.</p>
+<p>Ephemeral disks are useful if you aren&#8217;t worried about needing to duplicate an
+instance or destroy an instance and save the data. You can still mount a volume
+on an instance that is booted from an ephemeral disk and put any data that
+needs to be saved on it, instead of using the volume as the root of your OS.</p>
+<ul class="simple">
+<li><strong>Do not use up volume quota</strong>: If you have more instance quota, you can
+always boot it from an ephemeral disk even if you don&#8217;t have any volume
+quota left.</li>
+<li><strong>Cannot be snapshotted</strong>: This means you cannot duplicate an instance
+easily and you also can&#8217;t use snapshots to back your instance up.</li>
+<li><strong>Are destroyed when the instance is terminated</strong>: This means if you want to
+temporarily delete an instance to free up some instance quota, you can&#8217;t
+without losing your data.</li>
+</ul>
+</div>
+<div class="section" id="volume-boot-disks">
+<h2>Volume Boot Disks</h2>
+<p>Volumes are a more permanent form of storage than ephemeral disks and can be
+used to boot from as well as a mountable block device.</p>
+<p>Volume boot disks are useful if you need an easy way to duplicate instances and
+back them up with snapshots, or if you need a more reliable storage solution
+for your instance than an ephemeral disk. If you use them, you should plan
+ahead so that you have enough quota for all of the instances you want to boot.</p>
+<ul class="simple">
+<li><strong>Can be snapshotted</strong>: Useful for duplicating instances or having a copy of
+an instance at a certain point in time</li>
+<li><strong>Does not get destroyed when you terminate the instance (Unless you
+check the &#8220;Delete on Terminate&#8221; box)</strong>: You can terminate the instance and
+your data will still exist as a volume that you can boot from later</li>
+<li><strong>Uses your volume quota</strong>: This can be pricey if you have lots of instances,
+or take lots of snapshots</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

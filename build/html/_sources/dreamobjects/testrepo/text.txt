@@ -13,5 +13,3 @@ Bold
 2 asterix
 
 **Add Access Key**
-
-**SIMPLE TEST**

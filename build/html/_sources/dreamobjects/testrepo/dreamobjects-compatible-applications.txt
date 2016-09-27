@@ -1,0 +1,45 @@
+==================================================
+What Applications Are Compatible With DreamObjects
+==================================================
+
+ExpanDrive
+~~~~~~~~~~
+
+`ExpanDrive <https://www.expandrive.com/expandrive>`_ is an app that allows
+you to connect to DreamObjects just like a USB drive. It is available for both
+Mac and Windows and allows you to access DreamObjects from any application on
+your computer.
+
+Check out the `ExpanDrive DreamObjects tutorial <215988527>`_ for more info
+
+
+Strongsync
+~~~~~~~~~~
+
+.. Important::
+
+    The instructions in this wiki are for an older version of
+    Strongsync. Strongsync has been renamed ExpanDrive, click this `link`_ to go
+    to our tutorial on how to use ExpanDrive with DreamObjects.
+
+Strongsync is an app that provides Dropbox-like sync and backup functionality to
+`DreamObjects <http://www.dreamhost.com/cloud/dreamobjects/>`_. Sync data across
+computers, including Windows and Mac, while staying in control of your data.
+
+Check out the `Strongsync DreamObjects tutorial <217132017>`_ for more info
+
+
+QNAP
+~~~~
+
+If you have a QNAP network attached storage (NAS) device, you can now
+back it up to DreamObjects! There is now an application available for
+your QNAP that allows you to easily back up your data to DreamObjects
+for disaster recovery and long-term archiving.
+
+Check out the `QNAP DreamObjects tutorial <217114267>`_ for more info
+
+.. _link: 215988527-How-to-Use-ExpanDrive-with-DreamObjects
+
+.. meta::
+    :labels: windows osx macos linux

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Preformatted dark gray text option 3</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="Adding images" href="images.html" />
+    <link rel="prev" title="Creating code boxes" href="codebox_BAD.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="preformatted-dark-gray-text-option-3">
+<h1>Preformatted dark gray text option 3</h1>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto</span>
+<span class="kn">import</span> <span class="nn">boto.s3.connection</span>
+<span class="n">access_key</span> <span class="o">=</span> <span class="s1">&#39;put your access key here!&#39;</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s1">&#39;put your secret key here!&#39;</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">boto</span><span class="o">.</span><span class="n">connect_s3</span><span class="p">(</span>
+    <span class="n">aws_access_key_id</span> <span class="o">=</span> <span class="n">access_key</span><span class="p">,</span>
+    <span class="n">aws_secret_access_key</span> <span class="o">=</span> <span class="n">secret_key</span><span class="p">,</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">,</span>
+    <span class="n">calling_format</span> <span class="o">=</span> <span class="n">boto</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">OrdinaryCallingFormat</span><span class="p">(),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="another-python-example-that-closes-the-codebox">
+<h1>Another python example that closes the codebox:</h1>
+<p>NOTE: Closing tag must be unique
+NOTE: Closing tag must have two blank lines before it</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cloudfiles</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;account_name:username&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;your_api_key&#39;</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">cloudfiles</span><span class="o">.</span><span class="n">get_connection</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+    <span class="n">authurl</span><span class="o">=</span><span class="s1">&#39;https://objects-us-west-1.dream.io/auth&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-preformatted-code-boxes-from-a-python-script">
+<span id="swift-python-listing-owned-containerz"></span><h1>Creating preformatted code boxes from a python script</h1>
+<ul class="simple">
+<li>The Cloud team may create a python file with several sections.</li>
+<li>This format uses the literalinclude syntax. View <a class="reference external" href="http://www.sphinx-doc.org/en/stable/markup/code.html">http://www.sphinx-doc.org/en/stable/markup/code.html</a>.</li>
+<li>This example in in /source/dreamcompute/tutorials/examples/serverpilot.py</li>
+</ul>
+<p># step-1
+import requests
+import shade
+import json</p>
+<p>client_id = &#8216;CLIENT ID GOES HERE&#8217;
+api_key = &#8216;API KEY GOES HERE&#8217;
+server_name = &#8216;serverpilot&#8217;</p>
+<p># step-2
+server_info = json.loads(&#8216;{&#8220;name&#8221;: &#8220;&#8217; + server_name + &#8216;&#8221;}&#8217;)
+server_endpoint = &#8216;<a class="reference external" href="https://api.serverpilot.io/v1/servers">https://api.serverpilot.io/v1/servers</a>&#8216;</p>
+<p>session = requests.Session()
+session.auth = (client_id, api_key)
+session.headers = {&#8216;Content-Type&#8217;: &#8216;application/json&#8217;}
+response_raw = session.post(server_endpoint, json.dumps(server_info))
+print(response_raw.content)
+response_json = json.loads(response_raw.content)</p>
+<p># step-3
+cloud_init=&#8217;&#8216;&#8217;#!/bin/bash
+sudo apt-get update &amp;&amp; sudo apt-get -y install wget ca-certificates &amp;&amp; sudo wget -nv -O serverpilot-installer <a class="reference external" href="https://download.serverpilot.io/serverpilot-installer">https://download.serverpilot.io/serverpilot-installer</a> &amp;&amp; sudo sh serverpilot-installer &#8211;server-id={serverid} &#8211;server-apikey={serverapikey}
+&#8216;&#8217;&#8216;.format(serverid=response_json[&#8216;data&#8217;][&#8216;id&#8217;], serverapikey=response_json[&#8216;data&#8217;][&#8216;apikey&#8217;])</p>
+<p># step-4
+image_name = &#8216;Ubuntu-16.04&#8217;
+flavor_id = &#8216;100&#8217;
+key_name = &#8216;KEY NAME GOES HERE&#8217;</p>
+<p># step-5
+conn = shade.OpenStackCloud()</p>
+<p>image = conn.get_image(image_name)
+conn.create_server(image=image, flavor=flavor_id,</p>
+<div class="section" id="code-for-preformatted-codebox">
+<h2>Code for preformatted Codebox</h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">shade</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">client_id</span> <span class="o">=</span> <span class="s1">&#39;CLIENT ID GOES HERE&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;API KEY GOES HERE&#39;</span>
+<span class="n">server_name</span> <span class="o">=</span> <span class="s1">&#39;serverpilot&#39;</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li>The above displays the code from step-1 only.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">shade</span><span class="o">.</span><span class="n">OpenStackCloud</span><span class="p">()</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">image_name</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">create_server</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="n">flavor_id</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">network</span><span class="o">=</span><span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="n">userdata</span><span class="o">=</span><span class="n">cloud_init</span><span class="p">,</span>
+        <span class="n">key_name</span><span class="o">=</span><span class="n">key_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The last step doesn&#8217;t need an :end-before line.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

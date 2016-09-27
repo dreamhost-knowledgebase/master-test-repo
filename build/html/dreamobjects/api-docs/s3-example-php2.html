@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="PHP S3" name="labels" />
+
+    <title>Sample PHP Code Using DreamObjects S3-compatible API</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="Sample Python Code Using DreamObjects S3-compatible API And Boto" href="s3-example-python.html" />
+    <link rel="prev" title="AWS SDK for PHP S3 Examples" href="s3-example-php.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sample-php-code-using-dreamobjects-s3-compatible-api">
+<h1>Sample PHP Code Using DreamObjects S3-compatible API</h1>
+<div class="table-of-content container">
+<ul class="simple">
+<li><a class="reference internal" href="#s3-php2-creating-a-connection"><span>Creating a Connection</span></a></li>
+<li><a class="reference internal" href="#s3-php2-listing-owned-buckets"><span>Listing Owned Buckets</span></a></li>
+<li><a class="reference internal" href="#s3-php2-creating-a-bucket"><span>Creating a Bucket</span></a></li>
+<li><a class="reference internal" href="#s3-php2-list-a-buckets-content"><span>List a Bucket&#8217;s Content</span></a></li>
+<li><a class="reference internal" href="#s3-php2-deleting-a-bucket"><span>Deleting a Bucket</span></a></li>
+<li><a class="reference internal" href="#s3-php2-forced-delete-for-non-empty-buckets"><span>Forced Delete for Non-empty Buckets</span></a></li>
+<li><a class="reference internal" href="#s3-php2-creating-an-object"><span>Creating an Object</span></a></li>
+<li><a class="reference internal" href="#s3-php2-change-an-objects-acl"><span>Change an Object&#8217;s ACL</span></a></li>
+<li><a class="reference internal" href="#s3-php2-delete-an-object"><span>Delete an Object</span></a></li>
+<li><a class="reference internal" href="#s3-php2-download-an-object"><span>Download an Object (to a file)</span></a></li>
+<li><a class="reference internal" href="#s3-php2-generate-object-download-urls"><span>Generate Object Download URLs (signed and unsigned)</span></a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This library can be obtained in from Amazon as a <a class="reference external" href="http://pear.amazonwebservices.com/get/aws.zip">zip file</a>
+or from <a class="reference external" href="https://github.com/aws/aws-sdk-php">github</a>.  The
+examples in this guide have been tested against version 2.4.5
+obtained from a zip file. The AWS SDK for PHP 2 requires PHP
+5.3.3+.  The complete API reference is available on the
+<a class="reference external" href="http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html">Amazon</a>
+site.</p>
+</div>
+<div class="section" id="creating-a-connection">
+<span id="s3-php2-creating-a-connection"></span><h2>Creating a Connection</h2>
+<p>Create an S3 client object to interact with the DHO server.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;place access key here&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;AWS_SECRET_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;place secret key here&#39;</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;https://objects-us-west-1.dream.io&#39;</span><span class="p">);</span>
+
+<span class="c1">// require the AWS SDK for PHP library</span>
+<span class="k">require</span> <span class="s1">&#39;aws-autoloader.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Aws\S3\S3Client</span><span class="p">;</span>
+
+<span class="c1">// Establish connection with DreamObjects with an S3 client.</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">S3Client</span><span class="o">::</span><span class="na">factory</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;base_url&#39;</span> <span class="o">=&gt;</span> <span class="nx">HOST</span><span class="p">,</span>
+    <span class="s1">&#39;key&#39;</span>      <span class="o">=&gt;</span> <span class="nx">AWS_KEY</span><span class="p">,</span>
+    <span class="s1">&#39;secret&#39;</span>   <span class="o">=&gt;</span> <span class="nx">AWS_SECRET_KEY</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="listing-owned-buckets">
+<span id="s3-php2-listing-owned-buckets"></span><h2>Listing Owned Buckets</h2>
+<p>List buckets owned by the S3 user.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$blist</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">listBuckets</span><span class="p">();</span>
+<span class="k">echo</span> <span class="s2">&quot;   Buckets belonging to &quot;</span> <span class="o">.</span> <span class="nv">$blist</span><span class="p">[</span><span class="s1">&#39;Owner&#39;</span><span class="p">][</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$blist</span><span class="p">[</span><span class="s1">&#39;Buckets&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">{</span><span class="nv">$b</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="nv">$b</span><span class="p">[</span><span class="s1">&#39;CreationDate&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The output will look something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Buckets belonging to happydhouser:
+mahbuckat1   2011-04-21T18:05:39.000Z
+mahbuckat2   2011-04-21T18:05:48.000Z
+mahbuckat3   2011-04-21T18:07:18.000Z
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-bucket">
+<span id="s3-php2-creating-a-bucket"></span><h2>Creating a Bucket</h2>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">createBucket</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-new-bucket&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The library is somewhat inconsistent in its validation of
+permissible bucket names.  Typically the command will reject
+bucket names not safe to use as a subdomain, but does allow
+&#8220;_&#8221; underscores. Sticking to DNS-safe names is generally the
+best practice.</p>
+</div>
+</div>
+<div class="section" id="list-a-bucket-s-content">
+<span id="s3-php2-list-a-buckets-content"></span><h2>List a Bucket&#8217;s Content</h2>
+<p>Here we request an object iterator and loop over it to retrieve
+the desired information about the objects (object key, size,
+and modification time stamp in this case).</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$o_iter</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getIterator</span><span class="p">(</span><span class="s1">&#39;ListObjects&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="nv">$bucketname</span>
+<span class="p">));</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$o_iter</span> <span class="k">as</span> <span class="nv">$o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">{</span><span class="nv">$o</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="nv">$o</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="nv">$o</span><span class="p">[</span><span class="s1">&#39;LastModified&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The output will look something like this if the bucket has some files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>myphoto1.jpg 251262  2011-08-08T21:35:48.000Z
+myphoto2.jpg 262518  2011-08-08T21:38:01.000Z
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting-a-bucket">
+<span id="s3-php2-deleting-a-bucket"></span><h2>Deleting a Bucket</h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Bucket must be empty! Otherwise it won&#8217;t work!</p>
+</div>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">deleteBucket</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="nv">$new_bucket</span><span class="p">));</span>
+
+<span class="c1">// optionally, you can wait until the bucket is deleted</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">waitUntilBucketNotExists</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="nv">$new_bucket</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="forced-delete-for-non-empty-buckets">
+<span id="s3-php2-forced-delete-for-non-empty-buckets"></span><h2>Forced Delete for Non-empty Buckets</h2>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">This feature is not currently supported.</p>
+</div>
+</div>
+<div class="section" id="creating-an-object">
+<span id="s3-php2-creating-an-object"></span><h2>Creating an Object</h2>
+<p>This uploads a file from the filesystem and sets it to be private.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$key</span>         <span class="o">=</span> <span class="s1">&#39;hello.txt&#39;</span><span class="p">;</span>
+<span class="nv">$source_file</span> <span class="o">=</span> <span class="s1">&#39;./hello.txt&#39;</span><span class="p">;</span>
+<span class="nv">$acl</span>         <span class="o">=</span> <span class="s1">&#39;private&#39;</span><span class="p">;</span>
+<span class="nv">$bucket</span>      <span class="o">=</span> <span class="s1">&#39;my-bucket-name&#39;</span><span class="p">;</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">upload</span><span class="p">(</span><span class="nv">$bucket</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nb">fopen</span><span class="p">(</span><span class="nv">$source_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="nv">$acl</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-an-object-s-acl">
+<span id="s3-php2-change-an-objects-acl"></span><h2>Change an Object&#8217;s ACL</h2>
+<p>This changes the availability of the object <code class="docutils literal"><span class="pre">hello.txt</span></code> to be
+publicly readable, and object <code class="docutils literal"><span class="pre">secret_plans.txt</span></code> to be private.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">putObjectAcl</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Key&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;hello.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ACL&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;public-read&#39;</span>
+<span class="p">));</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">putObjectAcl</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Key&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;secret_plans.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ACL&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;private&#39;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">&#8216;ACL&#8217; can be one of: private, public-read, public-read-write, authenticated-read,
+bucket-owner-read, bucket-owner-full-control; <a class="reference external" href="http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_putObjectAcl">full reference</a>.</p>
+</div>
+</div>
+<div class="section" id="delete-an-object">
+<span id="s3-php2-delete-an-object"></span><h2>Delete an Object</h2>
+<p>This deletes the object <code class="docutils literal"><span class="pre">goodbye.txt</span></code></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">deleteObject</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Key&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;goodbye.txt&#39;</span><span class="p">,</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-an-object-to-a-file">
+<span id="s3-php2-download-an-object"></span><h2>Download an Object (to a file)</h2>
+<p>This downloads the object <code class="docutils literal"><span class="pre">poetry.pdf</span></code> from &#8216;my-bucket-name&#8217; and saves it
+in <code class="docutils literal"><span class="pre">/home/larry/documents</span></code></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getObject</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;Bucket&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Key&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;poetry.pdf&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SaveAs&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/home/larry/documents/poetry.pdf&#39;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-object-download-urls-signed-and-unsigned">
+<span id="s3-php2-generate-object-download-urls"></span><h2>Generate Object Download URLs (signed and unsigned)</h2>
+<p>This generates an unsigned download URL for <code class="docutils literal"><span class="pre">hello.txt</span></code>.
+This works because we made <code class="docutils literal"><span class="pre">hello.txt</span></code> public by setting
+the ACL above. This then generates a signed download URL
+for <code class="docutils literal"><span class="pre">secret_plans.txt</span></code> that will work for 1 hour.
+Signed download URLs will work for the time period even
+if the object is private (when the time period is up,
+the URL will stop working).</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$plain_url</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getObjectUrl</span><span class="p">(</span><span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span> <span class="s1">&#39;hello.txt&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$plain_url</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="nv">$signed_url</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getObjectUrl</span><span class="p">(</span><span class="s1">&#39;my-bucket-name&#39;</span><span class="p">,</span> <span class="s1">&#39;secret_plans.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;+1 hour&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$signed_url</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The output of this will look something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>http://my-bucket-name.objects-us-west-1.dream.io/hello.txt
+http://my-bucket-name.objects-us-west-1.dream.io/secret_plans.txt?Signature=XXXXXXXXXXXXXXXXXXXXXXXXXXX&amp;Expires=1316027075&amp;AWSAccessKeyId=XXXXXXXXXXXXXXXXXXX
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
