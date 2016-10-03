@@ -43,40 +43,31 @@
             
   <div class="section" id="how-to-use-boto-rsync-with-dreamobjects">
 <h1>How to use boto-rsync with DreamObjects</h1>
-<div class="section" id="overview">
-<h2>Overview</h2>
 <p><a class="reference external" href="https://github.com/dreamhost/boto_rsync">boto-rsync</a> is an rsync-like tool
 that leverages boto to synchronize files with an object storage service such
 as DreamObjects.</p>
-<blockquote>
-<div><div class="admonition note">
+<div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The creator of boto-rsync is no longer developing it, so there
 may be bugs and missing features.  DreamHost has forked the code
 (available at the above github URL) and fixed some issues related
 to unicode, multipart uploads, and multiprocessing.</p>
 </div>
-</div></blockquote>
-</div>
 <div class="section" id="example-commands">
 <h2>Example Commands</h2>
-<blockquote>
-<div><div class="admonition note">
+<p><strong>Uploading a file or directory</strong></p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[server]$</span> boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io /SOURCE/PATH s3://DESTINATIONBUCKET/PATH
+</pre></div>
+</div>
+<p><strong>Downloading a file or directory</strong></p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[server]$</span> boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io s3://SOURCEBUCKET/PATH /DESTINATION/PATH
+</pre></div>
+</div>
+<div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Optionally the &#8211;delete flag can be included for similar
 functionality to rsync, in order to remove files from the
 destination that don&#8217;t exist on the source.</p>
-</div>
-</div></blockquote>
-<p><strong>Uploading a file or directory</strong></p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>$ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io \
-/SOURCE/PATH s3://DESTINATIONBUCKET/PATH
-</pre></div>
-</div>
-<p><strong>Downloading a file or directory</strong></p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>$ boto-rsync -a ACCESSKEY -s SECRETKEY --endpoint objects-us-west-1.dream.io \
-s3://SOURCEBUCKET/PATH /DESTINATION/PATH
-</pre></div>
 </div>
 </div>
 </div>
