@@ -53,7 +53,7 @@ click **Attach Volume**.
 .. figure:: images/create-and-mount-volumes/volumes-attach-to-instance.png
 
 This completes the creation of the volume.  Please click below to continue with
-creationg your file system and mounting the volume.
+creating your file system and mounting the volume.
 
 *  `Creating A File System <#create-a-file-system>`_
 
@@ -144,8 +144,10 @@ The new drive now needs a file system so that it can store data.  There are
 many choices when it comes to file systems, but for this example we'll use a
 safe default of ext4.
 
-Now connect to your instance with the dhc-user username (or the "core" username
-if using CoreOS).
+Now connect to your instance with the default username for your image.
+
+.. include:: common/usernames.rst
+    :start-line: 2
 
 We first need to find the device name for our new volume.  You can see what
 devices are available by checking for /dev/vd* device files:

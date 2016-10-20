@@ -8,7 +8,7 @@ simplifies managing users for OpenStack (the public key is injected
 into the instance at boot). This prevents needing to modify files or
 passwords on the operating system on startup.
 
-SSH keypairs are managed on the `Access & Security - Keypairs`_
+SSH keypairs are managed on the Access & Security -> Keypairs
 section of the dashboard.
 
 SSH Key Components
@@ -42,10 +42,9 @@ via the DreamCompute dashboard
 ------------------------------
 
 The easiest way to generate a key is to have DreamCompute generate one
-for you.  You can do this by going to the DreamCompute `Access &
-Security - Keypairs <https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__keypairs_tab>`_
-dashboard.  On the top right, click the "Create Keypair" button, give
-the key a name, and click "Create Keypair".  Your browser will start
+for you.  You can do this by going to the DreamCompute dashboard, Access &
+Security -> Keypairs.  On the top right, click the "Create Keypair" button,
+give the key a name, and click "Create Keypair".  Your browser will start
 downloading the private key named the same as they name given with a
 .pem file extension.  Save this file for later user as your id_rsa
 private key file.
@@ -88,9 +87,9 @@ not have a password.
 
 The output looks like this:
 
-.. code::
+.. code-block:: console
 
-    $ ssh-keygen -t rsa
+    [user@localhost]$ ssh-keygen -t rsa
     Generating public/private rsa key pair.
     Enter file in which to save the key (/home/myuser/.ssh/id_rsa):
     Enter passphrase (empty for no passphrase):
@@ -127,21 +126,19 @@ and perhaps find your public key in the same location.
 On Mac and Linux systems, you can check in the above
 described location:
 
-.. code-block:: bash
+.. code-block:: console
 
-    $ ls ~/.ssh/id_rsa*
+    [user@localhost]$ ls ~/.ssh/id_rsa*
     /home/myuser/.ssh/id_rsa  /home/myuser/.ssh/id_rsa.pub
 
 Import an Existing SSH key into the Dashboard
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Find the public key file, and open it to copy its contents.  Next, go
-to the DreamCompute `Access & Security - Keypairs`_ dashboard and
+to the DreamCompute dashboard, go to Access & Security -> Keypairs, and
 click on "Import Keypair".  Give it a name and paste in the contents
 of your public key, then click "Import Keypair" to save it.
 
-
-.. _Access & Security - Keypairs: https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__keypairs_tab
 
 .. meta::
     :labels: ssh key mac linux windows

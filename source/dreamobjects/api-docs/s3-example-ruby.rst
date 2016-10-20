@@ -103,7 +103,7 @@ modified date.
 .. code-block:: ruby
 
     new_bucket = s3.buckets['my-new-bucket']
-    new_bucket.objetcs.each do |obj|
+    new_bucket.objects.each do |obj|
             puts "#{obj.key}\t#{obj.content_length}\t#{obj.last_modified}"
     end
 
@@ -152,7 +152,7 @@ This creates a file ``hello.txt`` with the string ``"Hello World!"``
         'Hello World!',
     )
 
-This uploads a a file ``test.txt``, sets the content-type, and makes it
+This uploads a file ``test.txt``, sets the content-type, and makes it
 publicly readable.
 
 .. code-block:: ruby
