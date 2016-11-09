@@ -6,7 +6,7 @@ DreamCompute is DreamHost's cloud computing service. This article is a quick
 overview to help walk you through the basic steps to set up a DreamCompute
 server and log into it.
 
-View the 'What is DreamCompute' article for a quick overview of this service.
+View the `'What is DreamCompute'`_ article for a quick overview of this service.
 Once you've read the overview, proceed with the following steps to create an
 instance and log in.
 
@@ -14,8 +14,8 @@ instance and log in.
 Step #1: Enable the DreamCompute service
 ========================================
 
-Log into your DreamHost panel at panel.dreamhost.com and navigate to the (Panel
-> 'Cloud Services' > 'DreamCompute') page.
+Log into your DreamHost panel at panel.dreamhost.com and navigate to the `(Panel
+> 'Cloud Services' > 'DreamCompute')`_ page.
 
 Enter a password you'll use for the DreamCompute panel and click the Continue
 button. This enables the DreamCompute service.
@@ -65,9 +65,9 @@ What's next?
 At this point, the server has been created and you are able to log into it via
 SSH. You can now continue to customize the server instance as necessary.
 
-.. _DreamObjects: https://dreamhost.com/cloud/storage
+.. _What is DreamCompute: 214840947
 
-.. _DreamCompute Billing Details are located here: 217744568
+.. _(Panel> 'Cloud Services' > 'DreamCompute'): https://panel.dreamhost.com/index.cgi?tree=cloud.compute&
 
 .. meta::
     :labels: nova glance keystone akanda neutron network dashboard
