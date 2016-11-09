@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="linux mac windows python boto" name="labels" />
+
+    <title>How to remove multi-part-upload (MPU) data and free up bucket space</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to setup Cross-Origin Resource Sharing (CORS) on DreamObjects" href="how-to-setup-cross-origin-sharing-on-dreamobjects.html" />
+    <link rel="prev" title="DreamSpeed CDN Advanced Cache Settings" href="dreamspeed-advanced-cache-settings.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-remove-multi-part-upload-mpu-data-and-free-up-bucket-space">
+<h1>How to remove multi-part-upload (MPU) data and free up bucket space</h1>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p>For larger file uploads, most S3 clients make use of the multi-part-upload
+(MPU) feature of the S3 protocol. This allows the client to break large files
+into smaller chunks, upload these smaller chunks, and re-try any chunks that
+failed without having to start over.</p>
+<p>Most S3 clients are good about cleaning up MPU data that it no longer needs,
+but if a connection drops or the client crashes, it could leave this data
+behind. The data is generally not used again, and silently uses additional
+disk space on your account until it is removed. It is worthwhile to check for
+and remove this MPU data if disk storage costs appear larger than expected.</p>
+<p>Most S3 clients don&#8217;t have a MPU data purge feature, so in the following example
+python and the boto library is used to check for and clean up this data.</p>
+</div>
+<div class="section" id="using-the-clean-up-script">
+<h2>Using the clean-up script</h2>
+<p>This script is an all-in-one solution that prompts you for the access and
+secret key, and then iterates over all buckets checking for MPU data. If
+any is found, it displays the file name, the date it was uploaded, and its
+size, and then prompts you if it should be deleted.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Once the MPU data is deleted, it cannot be recovered. Please be sure you
+don&#8217;t need the data before removing it!</p>
+</div>
+<div class="section" id="clean-up-script-code">
+<h3>Clean-up script code</h3>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">boto</span>
+
+<span class="c1"># Connect to DreamObjects</span>
+<span class="n">accesskey</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Access Key: &#39;</span><span class="p">))</span>
+<span class="n">secretkey</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Secret Key: &#39;</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">boto</span><span class="o">.</span><span class="n">connect_s3</span><span class="p">(</span><span class="n">accesskey</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;objects-us-west-1.dream.io&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over all buckets</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">get_all_buckets</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Bucket: &#39;</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="c1"># Check for MPU data and calculate the total storage used</span>
+    <span class="n">total_size</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">mpu</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">get_all_multipart_uploads</span><span class="p">():</span>
+        <span class="n">ptotalsize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mpu</span><span class="o">.</span><span class="n">get_all_parts</span><span class="p">():</span>
+            <span class="n">ptotalsize</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">print</span> <span class="n">mpu</span><span class="o">.</span><span class="n">initiated</span><span class="p">,</span> <span class="n">mpu</span><span class="o">.</span><span class="n">key_name</span><span class="p">,</span> <span class="n">ptotalsize</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ptotalsize</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;GB&#39;</span>
+        <span class="n">total_size</span> <span class="o">+=</span> <span class="n">ptotalsize</span>
+
+    <span class="k">print</span> <span class="s1">&#39;Total: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">total_size</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;GB&#39;</span>
+
+    <span class="c1"># If there is any usage, prompt to delete it and do so if requested</span>
+    <span class="k">if</span> <span class="n">total_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Delete MPU data? (y/n) &#39;</span><span class="p">))</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">mpu</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">get_all_multipart_uploads</span><span class="p">():</span>
+            <span class="n">mpu</span><span class="o">.</span><span class="n">cancel_upload</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s1">&#39;MPU data deleted!&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s1">&#39;No changes made to bucket.&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clean-up-script-example-output">
+<h3>Clean-up script example output</h3>
+<div class="code bash highlight-python"><div class="highlight"><pre><span></span>Access Key:  ACCESS KEY
+Secret Key:  SECRET KEY
+
+Bucket: homemovies
+2016-02-12T14:08:40.000Z 1986 - merry xmas.ts 1174405120 1.09GB
+2016-01-19T14:18:19.000Z 1994 alaska trip.ts 251658240 0.23GB
+2016-02-23T14:41:23.000Z 1994 alaska trip.ts 943718400 0.87GB
+2016-01-19T20:35:30.000Z 1994 alaska trip.ts 2384317892 2.22GB
+2016-01-20T20:57:49.000Z 1994 alaska trip.ts 1195376640 1.11GB
+Total: 5.54GB
+Delete MPU data? (y/n) y
+MPU data deleted!
+
+Bucket: operatingsystemimages
+2015-05-11T18:01:46.000Z coreos_production_iso_image.iso 150994944 0.14GB
+2015-05-11T18:00:36.000Z coreos_production_iso_image.iso 150994944 0.14GB
+2016-02-12T15:04:08.000Z win7.vdi 8965324800 8.34GB
+Total: 8.62GB
+Delete MPU data? (y/n) y
+MPU data deleted!
+
+Bucket: workbackup
+Total: 0.00GB
+No changes made to bucket.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

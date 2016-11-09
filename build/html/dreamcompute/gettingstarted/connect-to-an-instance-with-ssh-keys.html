@@ -50,8 +50,7 @@ wish to use on the &#8220;Access &amp; Security&#8221; tab of the
 instance creation screen.  For ssh to work it is
 required that port 22 is open in your selected
 security group in the DreamCompute
-<a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__security_groups_tab">Access &amp; Security - Security Group</a>
-dashboard.</p>
+Access &amp; Security - Security Group dashboard.</p>
 <div class="section" id="using-windows">
 <h2>Using Windows</h2>
 <p>A common program for ssh on windows is
@@ -72,10 +71,26 @@ private key&#8221; button to save it into a .ppk file.</p>
 button near the &#8220;Private key file for authentication&#8221;
 field.  Select the .ppk file you generated and then
 click open.  You can now navigate to the &#8220;Session&#8221;
-setting page, and enter into the host name field
-&#8220;dhc-user&#64;&#8221; followed immediately by your instance&#8217;s
-public ip address.  If using CoreOS, use &#8220;core&#64;&#8221; instead
-of &#8220;dhc-user&#64;&#8221;.  Click Open to start your session.</p>
+setting page, and enter the username of your image
+into the host name field, followed by the IP address
+of your server.</p>
+<p>The default username for each image is:</p>
+<div class="section" id="default-usernames">
+<h3>Default Usernames</h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Instances created before October 5th, 2016 will continue to have
+&#8220;dhc-user&#8221; as the default user, except for CoreOS, which will have &#8220;core&#8221;
+as the default user.</p>
+</div>
+<ul class="simple">
+<li>Ubuntu: ubuntu</li>
+<li>Fedora: fedora</li>
+<li>Debian: debian</li>
+<li>CentOS: centos</li>
+<li>CoreOS: core</li>
+</ul>
+</div>
 </div>
 <div class="section" id="using-mac-linux">
 <h2>Using Mac &amp; Linux</h2>
@@ -98,27 +113,22 @@ to the ~/.ssh/id_rsa file.</li>
 your ~/.ssh/config file to specify that connections to
 that specific host will use this alternate key.</li>
 </ul>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>Host IPADDRESS
-IdentityFile ~/path/to/key
+<div class="last highlight-nginx"><div class="highlight"><pre><span></span><span class="k">Host</span> <span class="s">IPADDRESS</span>
+<span class="s">IdentityFile</span> <span class="p">~</span><span class="sr">/path/to/key</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 </li>
 </ul>
-<p>The final step is to connect via ssh (replace &#8220;dhc-user&#8221; with &#8220;core&#8221; if using
-CoreOS):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh dhc-user@IPADDRESS
-Welcome to Ubuntu 12.04.2 LTS <span class="o">(</span>GNU/Linux
-3.5.0-23-generic x86_64<span class="o">)</span>
-dhc-user@example:~$
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ssh user@IPADDRESS
 </pre></div>
 </div>
 <ul>
 <li><dl class="first docutils">
 <dt>No configuration, specifying the key on the command line</dt>
 <dd><ul class="first last simple">
-<li>Connect via ssh -i ~/path/to/key <a class="reference external" href="mailto:dhc-user&#37;&#52;&#48;IPADDRESS">dhc-user<span>&#64;</span>IPADDRESS</a></li>
+<li>Connect via ssh -i ~/path/to/key <a class="reference external" href="mailto:user&#37;&#52;&#48;IPADDRESS">user<span>&#64;</span>IPADDRESS</a></li>
 </ul>
 </dd>
 </dl>

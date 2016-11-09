@@ -53,7 +53,7 @@ they have their own specific configuration and file hierarchy.</p>
 <div class="section" id="installing-apache">
 <h2>Installing Apache</h2>
 <p>To install Apache on your system, run the following command:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>yum install httpd
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> yum install httpd
 </pre></div>
 </div>
 <ul class="simple">
@@ -62,7 +62,7 @@ dependency packages needed for Apache.</li>
 <li>Enter &#8220;<strong>y</strong>&#8221; and hit enter to confirm.</li>
 </ul>
 <p>In order to start Apache run</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>service httpd start
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> service httpd start
 </pre></div>
 </div>
 <p>This may display an error about the lack of a configuration, but it
@@ -74,13 +74,13 @@ httpd: Could not reliably determine the server&#39;s fully qualified domain name
 </div>
 <p>You likely want apache to start on boot, and this can be configured
 with:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>chkconfig httpd on
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> chkconfig httpd on
 </pre></div>
 </div>
 <p>If you visit the public IP in your browser for your DreamCompute
 instance, you are able to see the &#8216;getting started&#8217; page.  You can
-find this IP on the <a class="reference external" href="https://dashboard.dreamcompute.com/project/instances/">Instances</a> (IP Address column) or
-<a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/">Access &amp; Security</a> (floating ips tab) panel pages.</p>
+find this IP on the Instances (IP Address column) or
+Access &amp; Security (floating ips tab) panel pages.</p>
 <p><em>The default page displays the following when Apache successfully
 installs:</em></p>
 <div class="code highlight-python"><div class="highlight"><pre><span></span>Apache 2 Test Page powered by CentOS
@@ -101,8 +101,8 @@ working properly.
 <p>This directory contains all the configuration files for your Apache
 server, and symlinks to other parts of the Apache install such as the
 logs and modules directories.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>[root@fedora20 ~]# ls /etc/httpd
-conf  conf.d  conf.modules.d  logs  modules  run
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> ls /etc/httpd
+<span class="go">conf  conf.d  conf.modules.d  logs  modules  run</span>
 </pre></div>
 </div>
 </div>
@@ -163,20 +163,20 @@ similar to your site name in the <strong>/etc/httpd/conf.d/</strong> directory.<
 but you can view a basic one listening on port 80 (http) with custom
 logging here:</li>
 </ul>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
-ServerName example.com
-ServerAlias www.example.com
-DocumentRoot /var/www/www.example.com
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="nb">ServerName</span> example.com
+<span class="nb">ServerAlias</span> www.example.com
+<span class="nb">DocumentRoot</span> <span class="sx">/var/www/www.example.com</span>
 
-CustomLog /var/log/httpd/www.example.com-access.log combined
-ErrorLog /var/log/httpd/www.example.com-error.log
-&lt;/VirtualHost&gt;
+<span class="nb">CustomLog</span> <span class="sx">/var/log/httpd/www.example.com-access.log</span> combined
+<span class="nb">ErrorLog</span> <span class="sx">/var/log/httpd/www.example.com-error.log</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
 </pre></div>
 </div>
 <p>Alternatively, if you wish to specify the ip instead of &#8220;<strong>*</strong>&#8221; you
 can use the following command replacing 1.1.1.1 with your real ip
 address:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>&lt;VirtualHost 1.1.1.1:80&gt;
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">1.1.1.1:80</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -188,7 +188,7 @@ specific .conf file out of the /etc/httpd/conf.d directory and then
 reloading Apache. Alternatively, you could comment out the entire file
 by adding &#8220;#&#8221; to the front of each line.  You can reload Apache via
 the command:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>service httpd reload
+<div class="code bash highlight-python"><div class="highlight"><pre><span></span>[root@server]# service httpd reload
 </pre></div>
 </div>
 </div>

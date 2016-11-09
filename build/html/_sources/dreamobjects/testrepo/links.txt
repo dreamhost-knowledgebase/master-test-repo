@@ -14,8 +14,6 @@ The following creates a link named Arq DreamObjects tutorial that redirects to h
 
 Check out the `Arq DreamObjects tutorial <215916587>`_ for more info
 
-Reference link
-~~~~~~~~~~~~~~
-I could not get this to work yet. An example is in this article:
-https://help.dreamhost.com/hc/en-us/articles/215916587
-In the warning template for STRONGSYNC. There is a link by reference named link
+https://github.com/dreamhost-knowledgebase/master-test-repo.git
+
+

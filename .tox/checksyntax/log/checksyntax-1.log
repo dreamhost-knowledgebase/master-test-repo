@@ -1,0 +1,41 @@
+actionid: checksyntax
+msg: getenv
+cmdargs: ['/home/sarin/GitHub/master-test-repo/.tox/checksyntax/bin/pip', 'install', '-r/home/sarin/GitHub/master-test-repo/requirements.txt']
+env: {'LC_NUMERIC': 'en_US.UTF-8', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_MEASUREMENT': 'en_US.UTF-8', 'PYTHONHASHSEED': '2216057618', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LC_PAPER': 'en_US.UTF-8', 'QT_IM_MODULE': 'ibus', 'LOGNAME': 'sarin', 'USER': 'sarin', 'HOME': '/home/sarin', 'XDG_VTNR': '2', 'PATH': '/home/sarin/GitHub/master-test-repo/.tox/checksyntax/bin:/home/sarin/bin:/home/sarin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'DISPLAY': ':1', 'SSH_AGENT_PID': '2173', 'LANG': 'en_US.UTF-8', 'TERM': 'xterm', 'SHELL': '/bin/bash', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'SESSION_MANAGER': 'local/Linx:@/tmp/.ICE-unix/2104,unix/Linx:/tmp/.ICE-unix/2104', 'LC_MONETARY': 'en_US.UTF-8', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path', 'QT_ACCESSIBILITY': '1', 'QT4_IM_MODULE': 'xim', 'CLUTTER_IM_MODULE': 'xim', 'WINDOWPATH': '2', 'XMODIFIERS': '@im=ibus', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4334', 'USERNAME': 'sarin', 'XDG_SESSION_DESKTOP': 'gnome', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/guake.desktop', 'XDG_RUNTIME_DIR': '/run/user/1000', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'VIRTUAL_ENV': '/home/sarin/GitHub/master-test-repo/.tox/checksyntax', 'GDMSESSION': 'gnome', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg', 'XDG_CURRENT_DESKTOP': 'GNOME', 'XDG_SESSION_ID': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-nbWYXV3YyW,guid=ba1832e9578e0ab6b31eab55582310b1', '_': '/home/sarin/.local/bin/tox', 'GTK_MODULES': 'gail:atk-bridge', 'GTK_IM_MODULE': 'ibus', 'DESKTOP_SESSION': 'gnome', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path', 'XDG_SESSION_TYPE': 'x11', 'OLDPWD': '/home/sarin/GitHub', 'SHLVL': '1', 'PWD': '/home/sarin/GitHub/master-test-repo', 'XDG_MENU_PREFIX': 'gnome-', 'LC_TIME': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'XDG_SEAT': 'seat0'}
+
+Collecting requests (from -r /home/sarin/GitHub/master-test-repo/requirements.txt (line 1))
+  Using cached requests-2.11.1-py2.py3-none-any.whl
+Collecting beautifulsoup4 (from -r /home/sarin/GitHub/master-test-repo/requirements.txt (line 2))
+  Using cached beautifulsoup4-4.5.1-py2-none-any.whl
+Collecting openstackdocstheme (from -r /home/sarin/GitHub/master-test-repo/requirements.txt (line 3))
+  Using cached openstackdocstheme-1.5.0-py2.py3-none-any.whl
+Collecting sphinx==1.3.3 (from -r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached Sphinx-1.3.3-py2.py3-none-any.whl
+Collecting doc8 (from -r /home/sarin/GitHub/master-test-repo/requirements.txt (line 5))
+  Using cached doc8-0.7.0-py2.py3-none-any.whl
+Collecting pbr>=1.6 (from openstackdocstheme->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 3))
+  Using cached pbr-1.10.0-py2.py3-none-any.whl
+Collecting babel!=2.0,>=1.3 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached Babel-2.3.4-py2.py3-none-any.whl
+Collecting docutils>=0.11 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+Collecting alabaster<0.8,>=0.7 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached alabaster-0.7.9-py2.py3-none-any.whl
+Collecting sphinx-rtd-theme<2.0,>=0.1 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached sphinx_rtd_theme-0.1.9-py2-none-any.whl
+Collecting six>=1.4 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached six-1.10.0-py2.py3-none-any.whl
+Collecting snowballstemmer>=1.1 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached snowballstemmer-1.2.1-py2.py3-none-any.whl
+Collecting Jinja2>=2.3 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached Jinja2-2.8-py2.py3-none-any.whl
+Collecting Pygments>=2.0 (from sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached Pygments-2.1.3-py2.py3-none-any.whl
+Collecting stevedore (from doc8->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 5))
+  Using cached stevedore-1.18.0-py2.py3-none-any.whl
+Collecting restructuredtext-lint>=0.7 (from doc8->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 5))
+Collecting chardet (from doc8->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 5))
+Collecting pytz>=0a (from babel!=2.0,>=1.3->sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+  Using cached pytz-2016.7-py2.py3-none-any.whl
+Collecting MarkupSafe (from Jinja2>=2.3->sphinx==1.3.3->-r /home/sarin/GitHub/master-test-repo/requirements.txt (line 4))
+Installing collected packages: requests, beautifulsoup4, pbr, openstackdocstheme, pytz, babel, docutils, alabaster, sphinx-rtd-theme, six, snowballstemmer, MarkupSafe, Jinja2, Pygments, sphinx, stevedore, restructuredtext-lint, chardet, doc8
+Successfully installed Jinja2-2.8 MarkupSafe-0.23 Pygments-2.1.3 alabaster-0.7.9 babel-2.3.4 beautifulsoup4-4.5.1 chardet-2.3.0 doc8-0.7.0 docutils-0.12 openstackdocstheme-1.5.0 pbr-1.10.0 pytz-2016.7 requests-2.11.1 restructuredtext-lint-0.17.2 six-1.10.0 snowballstemmer-1.2.1 sphinx-1.3.3 sphinx-rtd-theme-0.1.9 stevedore-1.18.0

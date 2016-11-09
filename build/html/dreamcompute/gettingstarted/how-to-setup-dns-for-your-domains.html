@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="" href="../../index.html" />
     <link rel="next" title="How To Setup PTR / Reverse DNS Records on DreamCompute" href="how-to-setup-ptr-records.html" />
-    <link rel="prev" title="How to download your DreamCompute openrc file" href="how-to-download-an-openrc-file.html" />
+    <link rel="prev" title="How to find the default user of an image" href="how-to-find-the-default-user-of-an-image.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -65,12 +65,12 @@ page to see them listed in the &#8220;IP Address&#8221; column:</p>
 <img alt="../../_images/DreamCompute-find-network-info.png" src="../../_images/DreamCompute-find-network-info.png" />
 </div>
 <p>or you can see them on the command line with &#8220;nova&#8221;:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>$ nova list
-+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+
-| ID                                   | Name    | Status | Task State | Power State | Networks                                                    |
-+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+
-| 10a3b11b-dc2f-42a2-b5d8-84508a5156a5 | website | ACTIVE | -          | Running     | public=208.113.128.37, 2607:f298:5:101d:f816:3eff:fe79:8c72 |
-+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> nova list
+<span class="go">+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+</span>
+<span class="go">| ID                                   | Name    | Status | Task State | Power State | Networks                                                    |</span>
+<span class="go">+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+</span>
+<span class="go">| 10a3b11b-dc2f-42a2-b5d8-84508a5156a5 | website | ACTIVE | -          | Running     | public=208.113.128.37, 2607:f298:5:101d:f816:3eff:fe79:8c72 |</span>
+<span class="go">+--------------------------------------+---------+--------+------------+-------------+-------------------------------------------------------------+</span>
 </pre></div>
 </div>
 <p>If you have multiple instances, you will have multiple public IPv4 and IPv6

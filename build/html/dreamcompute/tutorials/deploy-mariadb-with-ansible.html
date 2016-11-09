@@ -106,13 +106,13 @@ server:</p>
 - set_fact: public_v4=&quot;{{ mariadb_server.server.public_v4 }}&quot;
 
 - name: add the server to our ansible inventory
-  add_host: hostname={{ public_v4 }} groups=sql ansible_ssh_user=dhc-user ansible_ssh_private_key_file={{ private_key }}
+  add_host: hostname={{ public_v4 }} groups=sql ansible_ssh_user=user ansible_ssh_private_key_file={{ private_key }}
 </pre></div>
 </div>
 <p>Gather the public IP address of the server and add it to the Ansible
 hosts catalog. The <cite>add_host</cite> task creates a new entry assigning the
 IP of the new server to the Ansible group <cite>sql</cite> and configure the SSH
-connection with the default dhc-user, and set the private SSH key
+connection with the default user for your image, and set the private SSH key
 specified at the beginning.</p>
 </div>
 <div class="section" id="make-the-new-ubuntu-16-04-compatible-with-ansible">
@@ -170,23 +170,23 @@ database called <cite>backend_db</cite>.</p>
 <div class="section" id="running-the-ansible-playbook">
 <h2>Running the Ansible Playbook</h2>
 <p>The Ansible playbook can be run with the following command:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>$ ansible-playbook mariadb-server.yaml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ansible-playbook mariadb-server.yaml
 </pre></div>
 </div>
 <p>You&#8217;ll soon see on <a class="reference external" href="https://iad2.dreamcompute.com/project/instances/">DreamCompute web UI</a> the new instance
 and the new volume. Login into the new machine and check that the
 database is really there:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>$ sudo mysql backend_db
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 46
-Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> sudo mysql backend_db
+<span class="go">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span>
+<span class="go">Your MariaDB connection id is 46</span>
+<span class="go">Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04</span>
 
-Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+<span class="go">Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.</span>
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input
-statement.
+<span class="go">Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input</span>
+<span class="go">statement.</span>
 
-MariaDB [backend_db]&gt;
+<span class="go">MariaDB [backend_db]&gt;</span>
 </pre></div>
 </div>
 <p>Easy! Next steps are about securing the newly created server and
@@ -226,7 +226,7 @@ the SQL demon.</p>
     - set_fact: public_v4=&quot;{{ mariadb_server.server.public_v4 }}&quot;
 
     - name: add the server to our ansible inventory
-      add_host: hostname={{ public_v4 }} groups=sql ansible_ssh_user=dhc-user ansible_ssh_private_key_file={{ private_key }}
+      add_host: hostname={{ public_v4 }} groups=sql ansible_ssh_user=ubuntu ansible_ssh_private_key_file={{ private_key }}
 
 
 - hosts: sql

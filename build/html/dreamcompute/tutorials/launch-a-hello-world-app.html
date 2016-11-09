@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="ansible python" name="labels" />
+
+    <title>How to deploy a simple python wsgi application on DreamHost Cloud</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="next" title="How to launch a DreamCompute server with Ansible" href="launch-an-instance-with-ansible.html" />
+    <link rel="prev" title="How to SSH to an Instance Without a Public IP Address" href="jump-host.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-deploy-a-simple-python-wsgi-application-on-dreamhost-cloud">
+<h1>How to deploy a simple python wsgi application on DreamHost Cloud</h1>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This article assumes you are running Linux or Mac OS</p>
+</div>
+<p>In this article, you learn to deploy a simple web application on
+<a class="reference external" href="http://dreamhost.com/cloud/compute/">DreamCompute</a>, a public cloud powered
+by OpenStack,
+using the popular automation tool, <a class="reference external" href="http://www.ansible.com">Ansible</a>. To get
+started:</p>
+<ol class="arabic simple">
+<li>Sign up for a <a class="reference external" href="https://signup.dreamhost.com/compute/">DreamCompute account</a></li>
+<li><a class="reference external" href="https://help.dreamhost.com/hc/en-us/articles/214843617-How-to-upload-an-SSH-key-via-the-web-UI">Create an SSH key</a></li>
+<li>Install a recent version of <a class="reference external" href="https://www.python.org/downloads/">Python</a> (2.7+)</li>
+<li>Create a virtualenv</li>
+<li>Install the <cite>helloworld</cite> Python package in this repository, <code class="docutils literal"><span class="pre">shade</span></code>, and
+<code class="docutils literal"><span class="pre">ansible</span></code>:</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> virtualenv venv <span class="o">&amp;&amp;</span> . venv/bin/activate
+<span class="gp">[user@localhost]$</span> git clone https://github.com/ryanpetrello/dreamcompute-hello-world.git hello-world
+<span class="gp">[user@localhost]$</span> <span class="nb">cd</span> hello-world <span class="o">&amp;&amp;</span> pip install -e . shade ansible
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-and-wsgi">
+<h2>Python and WSGI</h2>
+<p>This tutorial describes how to deploy a very simple Python WSGI application
+that responds to all HTTP requests with <code class="docutils literal"><span class="pre">Hello,</span> <span class="pre">World!</span></code> WSGI is a Python
+protocol that allows a web server to interface with a Python callable (or
+function) to handle each request. Our function looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="n">start_response</span><span class="p">(</span><span class="s2">&quot;200 OK&quot;</span><span class="p">,</span> <span class="p">[</span>
+          <span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+      <span class="p">])</span>
+      <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>but you could replace this Python code and the web server with your own
+written in PHP, Ruby, Javascript, or any other language.</p>
+</div>
+<div class="section" id="deploying-with-ansible">
+<h2>Deploying with Ansible</h2>
+<p>This article uses Ansible to create a <a class="reference external" href="https://github.com/ryanpetrello/dreamcompute-hello-world/blob/master/playbooks/deploy.yml">repeatable &#8220;playbook&#8221; of commands</a>
+to set up the Hello World application on a DreamCompute server. These commands
+include:</p>
+<ul class="simple">
+<li>Launching a server in DreamCompute and assigning a public IP address to it</li>
+<li>Installing a web server (this tutorial uses <a class="reference external" href="http://gunicorn.org">gunicorn</a>)</li>
+<li>Installing our example Python application and configuring it to handle
+requests</li>
+</ul>
+<p>In order for Ansible to run DreamCompute API calls on your behalf, you need
+to download a small shell script that sets up your API credentials called an
+openrc file, read <a class="reference external" href="228047207-How-to-download-your-DreamCompute-openrc-file">the tutorial about openrc files</a> for information on
+how to download and use it.
+After the shell script downloads, open your
+computer&#8217;s command line and run the following (substituting the actual
+location of your downloaded file).</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> <span class="nb">source</span> /path/to/downloaded/file/dhc123456789-openrc.sh
+</pre></div>
+</div>
+<p>You are prompted for a password - it&#8217;s the one you use to log in to the
+DreamCompute Dashboard.</p>
+<p>At this point you should be ready to deploy your application. Do so by running
+the following commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> chmod <span class="m">600</span> /path/to/keyname.pem
+<span class="gp">[user@localhost]$</span> ansible-playbook -vvvv -i <span class="s2">&quot;localhost,&quot;</span> playbooks/deploy.yml --extra-vars <span class="s2">&quot;key_name=keyname private_key=/path/to/keyname.pem&quot;</span>
+</pre></div>
+</div>
+<p>You need to substitute the <code class="docutils literal"><span class="pre">keyname</span></code> key name value for the actual name
+you chose earlier, and you also need to replace <code class="docutils literal"><span class="pre">/path/to/keyname.pem</span></code>
+with the actual path to the PEM file you downloaded.</p>
+<p>If all is well, you are greeted with an instructional message:</p>
+<blockquote>
+<div>Visit <a class="reference external" href="http://1.2.3.4/">http://1.2.3.4/</a> in your browser!</div></blockquote>
+</div>
+<div class="section" id="example-server-architecture">
+<h2>Example Server Architecture</h2>
+<p>If you <code class="docutils literal"><span class="pre">ssh</span></code> into your newly created server:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ssh -i /path/to/keyname.pem user@1.2.3.4
+</pre></div>
+</div>
+<p>you find a variety of processes running in the following configuration:</p>
+<div class="code highlight-python"><div class="highlight"><pre><span></span>HTTP Request ──&gt; &lt;Production/Proxy Server&gt;, nginx (1.2.3.4:80)
+                  │
+                  │   &lt;supervisord&gt; (monitors and keeps gunicorn processes running)
+                  ├── &lt;WSGI Server&gt; gunicorn Instance (/tmp/gunicorn.sock)
+                  ├── &lt;WSGI Server&gt; gunicorn Instance (/tmp/gunicorn.sock)
+                  ├── &lt;WSGI Server&gt; gunicorn Instance (/tmp/gunicorn.sock)
+                  ├── &lt;WSGI Server&gt; gunicorn Instance (/tmp/gunicorn.sock)
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">supervisord</span></code> is installed and is used to manage multiple <code class="docutils literal"><span class="pre">gunicorn</span></code> worker
+processes, each of which is bound to a Unix domain socket (though you could
+also configure them to bind to a TCP port). <code class="docutils literal"><span class="pre">NGINX</span></code> listens on port 80 and
+balances incoming HTTP requests across the gunicorn workers processes.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

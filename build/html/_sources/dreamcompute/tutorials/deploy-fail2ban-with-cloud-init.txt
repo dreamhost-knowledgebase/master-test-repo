@@ -38,7 +38,7 @@ web UI. Copy and paste the text below into the text box.
 
 .. note::
 
-   Make sure to include the line `#cloud-config`, as that is not a commment.
+   Make sure to include the line `#cloud-config`, as that is not a comment.
 
 
 Visit `How to launch and manage instances with the DreamCompute dashboard`_ for
@@ -67,7 +67,9 @@ The command to create an instance that runs cloud-init.sh at creation is:
 
 .. code::
 
-    $ openstack server create --image Ubuntu-16.04 --flavor gp1.semisonic --security-group default --key-name stef --user-data cloud-init.sh newserver
+    [user@localhost]$ openstack server create --image Ubuntu-16.04 --flavor \
+        gp1.semisonic --security-group default --key-name stef --user-data \
+        cloud-init.sh newserver
 
 Visit `How to launch a virtual server on DreamCompute`_ for more information
 on how to launch an instance from the command line

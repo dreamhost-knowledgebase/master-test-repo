@@ -106,19 +106,19 @@ various tools. Tougher though than on Nix systems as you can read <a class="refe
 </pre></div>
 </div>
 <p>Set up a directory for your project:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>$ mkdir example.com &amp;&amp; cd example.com
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> mkdir example.com <span class="o">&amp;&amp;</span> <span class="nb">cd</span> example.com
 </pre></div>
 </div>
 <p>Then clone the repository:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>git clone --depth=1 git@github.com:roots/trellis.git &amp;&amp; rm -rf trellis/.git
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> git clone --depth<span class="o">=</span><span class="m">1</span> git@github.com:roots/trellis.git <span class="o">&amp;&amp;</span> rm -rf trellis/.git
 </pre></div>
 </div>
 <p>Clone Bedrock:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>git clone --depth=1 git@github.com:roots/bedrock.git site &amp;&amp; rm -rf site/.git
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> git clone --depth<span class="o">=</span><span class="m">1</span> git@github.com:roots/bedrock.git site <span class="o">&amp;&amp;</span> rm -rf site/.git
 </pre></div>
 </div>
 <p>Install the Galaxy Ansible Roles</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>cd trellis &amp;&amp; ansible-galaxy install -r requirements.yml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> <span class="nb">cd</span> trellis <span class="o">&amp;&amp;</span> ansible-galaxy install -r requirements.yml
 </pre></div>
 </div>
 <p>Next you need to change the wordpress_sites.yml. File for local
@@ -176,7 +176,7 @@ Trellis Docs WordPress Sites</a> .</p>
 <p>They were discussed under installation earlier!</p>
 <p>Then run the vagrant command from the command line. Do this inside the
 trellis folder where the Vagrant File is:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>vagrant up
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> vagrant up
 </pre></div>
 </div>
 <div class="section" id="id3">
@@ -195,7 +195,7 @@ using a Ubuntu 14.0.4 image on DreamCompute. You can also use a more
 recent version of Ubuntu, Ubuntu 16.0.4. However, you will then be
 forced to install an older version of Python - 2.x - side by side
 with Python 3 on your DreamCompute instance. This you can do using:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install python
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@server]$</span> sudo apt-get install python
 </pre></div>
 </div>
 <p>If you do not mind this extra step then do go ahead. Always nice to run a
@@ -292,9 +292,9 @@ article on Custom DNS Records</a> .</p>
 <h3>Users</h3>
 <p>Wait, we skipped one more important file to attend to located in
 trellis/group_vars/all. That is users.yml. DreamCompute does not work with
-root but with the user dhc-user and that should be reflected in this file:</p>
+root but with the user ubuntu and that should be reflected in this file:</p>
 <div class="code highlight-python"><div class="highlight"><pre><span></span># Documentation: https://roots.io/trellis/docs/ssh-keys/
-admin_user: dhc-user
+admin_user: ubuntu
 # Also define &#39;vault_sudoer_passwords&#39; (`group_vars/staging/vault.yml`,
  `group_vars/production/vault.yml`)
 users:
@@ -330,7 +330,7 @@ located elsewhere you do need to change those lines as well.</p>
 <li>Specify public SSH keys for users in group_vars/all/users.yml (see the SSH Keys docs)</li>
 </ul>
 <p>When all that is good you can go ahead and push to the remote server using:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>ansible-playbook server.yml -e env=&lt;environment&gt;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ansible-playbook server.yml -e <span class="nv">env</span><span class="o">=</span>&lt;environment&gt;
 </pre></div>
 </div>
 <p>Here <em>environment</em> will be production if you are pushing to production.
@@ -358,7 +358,7 @@ did for provisioning:</p>
 <li>branch (optional) - the git branch to deploy (default: master)</li>
 </ul>
 <p>You can deploy with a single command:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>./deploy.sh &lt;environment&gt; &lt;domain&gt;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ./deploy.sh &lt;environment&gt; &lt;domain&gt;
 </pre></div>
 </div>
 <p>where the environment can again be staging or production .</p>

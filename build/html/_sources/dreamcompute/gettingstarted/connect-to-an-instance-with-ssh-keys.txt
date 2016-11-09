@@ -9,8 +9,7 @@ wish to use on the "Access & Security" tab of the
 instance creation screen.  For ssh to work it is
 required that port 22 is open in your selected
 security group in the DreamCompute
-`Access & Security - Security Group <https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__security_groups_tab>`_
-dashboard.
+Access & Security - Security Group dashboard.
 
 Using Windows
 -------------
@@ -34,10 +33,13 @@ Now you can open PuTTY and navigate to the Connection
 button near the "Private key file for authentication"
 field.  Select the .ppk file you generated and then
 click open.  You can now navigate to the "Session"
-setting page, and enter into the host name field
-"dhc-user@" followed immediately by your instance's
-public ip address.  If using CoreOS, use "core@" instead
-of "dhc-user@".  Click Open to start your session.
+setting page, and enter the username of your image
+into the host name field, followed by the IP address
+of your server.
+
+The default username for each image is:
+
+.. include:: common/usernames.rst
 
 Using Mac & Linux
 -----------------
@@ -54,23 +56,17 @@ first.  There are several ways to do this:
       your ~/.ssh/config file to specify that connections to
       that specific host will use this alternate key.
 
-    .. code-block:: bash
+    .. code-block:: nginx
 
         Host IPADDRESS
         IdentityFile ~/path/to/key
 
-The final step is to connect via ssh (replace "dhc-user" with "core" if using
-CoreOS):
+.. code-block:: console
 
-.. code-block:: bash
-
-    $ ssh dhc-user@IPADDRESS
-    Welcome to Ubuntu 12.04.2 LTS (GNU/Linux
-    3.5.0-23-generic x86_64)
-    dhc-user@example:~$
+    [user@localhost]$ ssh user@IPADDRESS
 
 * No configuration, specifying the key on the command line
-    * Connect via ssh -i ~/path/to/key dhc-user@IPADDRESS
+    * Connect via ssh -i ~/path/to/key user@IPADDRESS
 
 .. meta::
     :labels: ssh key mac linux windows

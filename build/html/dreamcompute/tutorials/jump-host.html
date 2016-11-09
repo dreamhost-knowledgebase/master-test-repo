@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="" href="../../index.html" />
     <link rel="next" title="How to deploy a simple python wsgi application on DreamHost Cloud" href="launch-a-hello-world-app.html" />
-    <link rel="prev" title="How to Migrate Volumes Between DreamCompute Clusters" href="how-to-migrate-volumes-between-clusters.html" />
+    <link rel="prev" title="How to deploy multinode WordPress on DreamCompute using Ansible" href="how-to-setup-multinode-wordpress-on-dreamcompute-with-ansible.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -70,13 +70,26 @@ DreamCompute</a>.</p>
 <h2>Configuring a Jump Host in DreamCompute</h2>
 <p>The following example shows a setup of an SSH config file
 (~/.ssh/config) on a local machine so that it can connect first to a
-jump host called “jump”.</p>
+jump host called “jump”. Change $username to the default user for your image,</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Instances created before October 5th, 2016 will continue to have
+&#8220;dhc-user&#8221; as the default user, except for CoreOS, which will have &#8220;core&#8221;
+as the default user.</p>
+</div>
+<ul class="simple">
+<li>Ubuntu: ubuntu</li>
+<li>Fedora: fedora</li>
+<li>Debian: debian</li>
+<li>CentOS: centos</li>
+<li>CoreOS: core</li>
+</ul>
 <ol class="arabic">
 <li><p class="first">Enter the following:</p>
 <blockquote>
 <div><div class="code highlight-python"><div class="highlight"><pre><span></span>Host jump
 HostName X.X.X.X #Replace with your Floating IP Address
-User dhc-user
+User $username
 IdentityFile ~/.ssh/id_rsa.pub
 </pre></div>
 </div>
@@ -89,7 +102,7 @@ HostName option.</li>
 </li>
 <li><p class="first">Ensure you can log into your jump host with SSH:</p>
 <blockquote>
-<div><div class="code highlight-python"><div class="highlight"><pre><span></span>ssh jump
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ssh jump
 </pre></div>
 </div>
 </div></blockquote>
@@ -100,7 +113,7 @@ through a proxy on the jump host by entering the following:</p>
 <blockquote>
 <div><div class="code highlight-python"><div class="highlight"><pre><span></span>Host 10.10.10.*
 ProxyCommand ssh jump -W %h:%p
-User dhc-user
+User $username
 IdentityFile ~/.ssh/dreamcompute.pem
 </pre></div>
 </div>
@@ -121,7 +134,7 @@ host and port.</li>
 <li><p class="first">To connect to your private instances from a local machine, SSH to
 the private IP:</p>
 <blockquote>
-<div><div class="code highlight-python"><div class="highlight"><pre><span></span>ssh 10.10.10.5
+<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ssh 10.10.10.5
 </pre></div>
 </div>
 </div></blockquote>

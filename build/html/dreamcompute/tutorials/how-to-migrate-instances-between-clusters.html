@@ -70,7 +70,7 @@ US-East 2, the specific assigned 10.x.x.x address may also change.</p>
 already setup in US-East 1, you will have to setup the same keys or new
 ones in US-East 2.  If OpenStack generated the SSH Key for you, it let you
 download the private key but the public key is what you would need for an
-import.  You could grab it from /home/dhc-user/.ssh/authorized_keys on an
+import.  You could grab it from ~/.ssh/authorized_keys on an
 instance that used the key.  For the instances themselves, the
 authorized_keys file isn&#8217;t overwritten, only appended, and so whatever keys
 are currently setup will continue to work after the move.</p>
@@ -122,14 +122,14 @@ instance ephemeral, since we won&#8217;t be planning to keep it.</p>
 <ol class="arabic simple" start="2">
 <li>Install the needed software to work with glance on this new instance.</li>
 </ol>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>apt-get install python-dev python-pip
-pip install python-openstackclient
-pip install python-glanceclient
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> apt-get install python-dev python-pip
+<span class="gp">[root@server]#</span> pip install python-openstackclient
+<span class="gp">[root@server]#</span> pip install python-glanceclient
 </pre></div>
 </div>
 <p>After this, run &#8220;glance help&#8221; and check for any other modules that it says are
 missing.  Install them with:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>pip install MODULENAME
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> pip install MODULENAME
 </pre></div>
 </div>
 <p>3.  Setup your OpenStack RC file for the DESTINATION cluster on this new
@@ -137,16 +137,16 @@ instance, which can be downloaded from its Access &amp; Security -&gt; API Acces
 in the dashboard.  Either upload the file to your instance, or copy/paste its
 contents into a file on this instance.  Once you are run, you can run it like
 so.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>vi dreamcompute-CLUSTER.sh
-&lt;paste the contents, save&gt;
-. dreamcompute-CLUSTER.sh
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> vi dreamcompute-CLUSTER.sh
+<span class="go">&lt;paste the contents, save&gt;</span>
+<span class="gp">[root@server]#</span> . dreamcompute-CLUSTER.sh
 </pre></div>
 </div>
 <p>It will then prompt you to &#8220;Please enter your OpenStack Password:&#8221;, and go
 ahead and do that.</p>
 <p>If you run a command like the below, it should output the current OS images
 in the destination cluster.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>glance image-list
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> glance image-list
 </pre></div>
 </div>
 <p>4.  Delete the instance that you wish to move, freeing up its volume to be
@@ -155,8 +155,8 @@ attached to the above newly created instance.</p>
 drop-down on the right side, and then &#8220;Edit Attachments&#8221;.</p>
 <p>6.  On the new instance, check &#8220;dmesg&#8221; for the drive letter, or you can check
 the usual names for it, until you find the volume.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>fdisk -l /dev/vdb | grep Disk
-fdisk -l /dev/vdc | grep Disk
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> fdisk -l /dev/vdb <span class="p">|</span> grep Disk
+<span class="gp">[root@server]#</span> fdisk -l /dev/vdc <span class="p">|</span> grep Disk
 </pre></div>
 </div>
 <p>One of those should match the size of the volume you are trying to move.  Make
@@ -164,9 +164,9 @@ note of the drive letter (the /dev/vdX part).</p>
 <p>7.  Now we will copy the data to glance, using dd and piping it directly.
 Don&#8217;t forget to change the drive letter in the example to the one you found
 above, and change any text in all CAPS to suit your taste.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>dd if=/dev/vdX | glance --os-image-api-version 1 image-create \
-    --name &quot;INSTANCENAME&quot; --is-public false --disk-format raw \
-    --container-format bare
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> dd <span class="k">if</span><span class="o">=</span>/dev/vdX <span class="p">|</span> glance --os-image-api-version <span class="m">2</span> <span class="se">\</span>
+<span class="go">    image-create \ --name &quot;INSTANCENAME&quot; --is-public false --disk-format \</span>
+<span class="go">    raw --container-format bare</span>
 </pre></div>
 </div>
 <p>8.  Wait while this runs, and if successful it should output the info about the
@@ -184,14 +184,14 @@ servers, etc, leaving hopefully just default system tools and sshd running.</p>
 <ol class="arabic simple" start="2">
 <li>Install the needed software to work with glance on this new instance.</li>
 </ol>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>apt-get install python-dev python-pip
-pip install python-openstackclient
-pip install python-glanceclient
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> apt-get install python-dev python-pip
+<span class="gp">[root@server]#</span> pip install python-openstackclient
+<span class="gp">[root@server]#</span> pip install python-glanceclient
 </pre></div>
 </div>
 <p>After this, run &#8220;glance help&#8221; and check for any other modules that it says are
 missing.  Install them with:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>pip install MODULENAME
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> pip install MODULENAME
 </pre></div>
 </div>
 <p>3.  Setup your OpenStack RC file for the DESTINATION cluster on this new
@@ -199,25 +199,25 @@ instance, which can be downloaded from its Access &amp; Security -&gt; API Acces
 in the dashboard.  Either upload the file to your instance, or copy/paste its
 contents into a file on this instance.  Once you are run, you can run it like
 so.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>vi dreamcompute-CLUSTER.sh
-&lt;paste the contents, save&gt;
-. dreamcompute-CLUSTER.sh
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> vi dreamcompute-CLUSTER.sh
+<span class="go">&lt;paste the contents, save&gt;</span>
+<span class="gp">[root@server]#</span> . dreamcompute-CLUSTER.sh
 </pre></div>
 </div>
 <p>It will then prompt you to &#8220;Please enter your OpenStack Password:&#8221;, and go
 ahead and do that.</p>
 <p>If you run a command like the below, it should output the current OS images
 in the destination cluster.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>glance image-list
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> glance image-list
 </pre></div>
 </div>
 <p>4.  Determine the drive letter by examining the output of &#8220;df -h&#8221; for the root
 (/) filesystem.  Generally this will be /dev/vda1.</p>
 <p>5.  Now we will copy the data to glance, using dd and piping it directly.
 Change any text in all CAPS to suit your taste.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span></span>dd if=/dev/vda | glance --os-image-api-version 1 image-create \
-    --name &quot;INSTANCENAME&quot; --is-public false --disk-format raw \
-    --container-format bare
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[root@server]#</span> dd <span class="k">if</span><span class="o">=</span>/dev/vda <span class="p">|</span> glance --os-image-api-version <span class="m">1</span> image-create <span class="se">\</span>
+<span class="go">    --name &quot;INSTANCENAME&quot; --is-public false --disk-format raw \</span>
+<span class="go">    --container-format bare</span>
 </pre></div>
 </div>
 <p>6.  Wait while this runs, and if successful it should output the info about the

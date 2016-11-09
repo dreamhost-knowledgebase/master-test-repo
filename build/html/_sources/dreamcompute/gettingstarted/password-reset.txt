@@ -18,9 +18,9 @@ It's easy to reset your DreamCompute password in the DreamHost Control Panel.
 DreamCompute Dashboard
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You can change your password using the DreamCompute dashboard. Go to the
-`Change Password <https://dashboard.dreamcompute.com/settings/password/>`_
-page, enter your current password and your new password.
+You can change your password using the DreamCompute dashboard. Go to Settings
+-> Change Password, in the DreamCompute Dashboard, enter your current password
+and your new password.
 
 .. figure:: images/DHC-change-password.png
 
@@ -37,9 +37,9 @@ You can use the Keystone command-line client to change your password. This
 assumes you already have the OS_PASSWORD variable set via the OpenStack RC
 file.
 
-.. code-block:: bash
+.. code-block:: console
 
-    keystone password-update --new-password  <new-password>
+    [user@localhost]$ keystone password-update --new-password  <new-password>
 
 **Don't have the Keystone client?** The
 `OpenStack wiki
@@ -66,15 +66,15 @@ your own.
 
 Set the variables.
 
-.. code-block:: bash
+.. code-block:: console
 
-    source TENANTNUM-openrc.sh
+    [user@localhost]$ source TENANTNUM-openrc.sh
 
 or
 
-.. code-block:: bash
+.. code-block:: console
 
-    . TENANTNUM-openrc.sh
+    [user@localhost]$ . TENANTNUM-openrc.sh
 
 Type in your current password when prompted.
 

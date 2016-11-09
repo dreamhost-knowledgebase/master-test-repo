@@ -47,8 +47,8 @@
 <h2>Introduction</h2>
 <p>Load balancers are designed to host multiple applications behind the
 same IP address to save cost and to allow applications to horizontally
-scale out instances running on multiple virtual machines.</p>
-<p>One of the most popular open source load balancers is
+scale out instances running on multiple virtual machines.
+One of the most popular open source load balancers is
 <a class="reference external" href="http://www.haproxy.org/">HAProxy</a>. It is well supported,
 featureful, high performing, and widely available.</p>
 <p>In this tutorial, we will be creating a virtual machine inside of
@@ -59,8 +59,8 @@ Ubuntu 14.04 as the base operating system image for our load balancer.</p>
 <h2>Prepping Your Virtual Machine</h2>
 <p>Create a virtual machine in DreamCompute using your favorite method, a
 <em>subsonic</em> flavor should be enough. Make sure to assign an SSH key and
-allow access to  HTTP (port 80) and SSH (port 22) in the <a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/">Access &amp;
-Security</a> group.Associate a public IPv4 &#8220;floating&#8221; IP address to this
+allow access to  HTTP (port 80) and SSH (port 22) in the Access &amp;
+Security group. Associate a public IPv4 &#8220;floating&#8221; IP address to this
 machine.</p>
 <div class="figure">
 <img alt="../../_images/HAProxy_instances_dash.fw.png" src="../../_images/HAProxy_instances_dash.fw.png" />
@@ -107,7 +107,7 @@ to SSH into your instance via its IPv4 address.</li>
 <img alt="../../_images/HAProxy_SSH1.fw.png" src="../../_images/HAProxy_SSH1.fw.png" />
 </div>
 <p>4. SSH into your instance via its IPv4 address (the default user is
-dhc-user, you can&#8217;t login as root).</p>
+ubuntu, you can&#8217;t login as root).</p>
 <p>Now, we’re ready to get HAProxy installed and configured.</p>
 </div>
 <div class="section" id="install-haproxy">
@@ -116,16 +116,16 @@ dhc-user, you can&#8217;t login as root).</p>
 <h3>Updating Packages</h3>
 <p>Before installing HAProxy, its important to be sure that your
 operating system is up to date with the latest security fixes and
-packages available from Ubuntu. While logged in as dhc-user, simply
+packages available from Ubuntu. While logged in as ubuntu, simply
 run:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>sudo apt-get upgrade
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@server]$</span> sudo apt-get upgrade
 </pre></div>
 </div>
 <p>Follow the prompts, and allow apt to update your system.</p>
 </div>
 <div class="section" id="installing-haproxy">
 <h3>Installing HAProxy</h3>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install haproxy
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@server]$</span> sudo apt-get install haproxy
 </pre></div>
 </div>
 </div>
@@ -210,7 +210,7 @@ server node2 10.10.10.4:80 cookie A check
 </div>
 <p>Next, you&#8217;ll need to activate HAProxy by setting ENABLED to 1 in
 /etc/default/haproxy. Finally, you can run HAProxy:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>sudo service haproxy restart
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@server]$</span> sudo service haproxy restart
 </pre></div>
 </div>
 <p>Assuming that you have configured your DNS to point app1.domain.io and

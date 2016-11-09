@@ -48,7 +48,7 @@ of using passwords alone.  This is done for increased security and
 simplifies managing users for OpenStack (the public key is injected
 into the instance at boot). This prevents needing to modify files or
 passwords on the operating system on startup.</p>
-<p>SSH keypairs are managed on the <a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__keypairs_tab">Access &amp; Security - Keypairs</a>
+<p>SSH keypairs are managed on the Access &amp; Security -&gt; Keypairs
 section of the dashboard.</p>
 <div class="section" id="ssh-key-components">
 <h2>SSH Key Components</h2>
@@ -74,10 +74,9 @@ instead where the user chooses to save them.</p>
 <div class="section" id="via-the-dreamcompute-dashboard">
 <h3>via the DreamCompute dashboard</h3>
 <p>The easiest way to generate a key is to have DreamCompute generate one
-for you.  You can do this by going to the DreamCompute <a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__keypairs_tab">Access &amp;
-Security - Keypairs</a>
-dashboard.  On the top right, click the &#8220;Create Keypair&#8221; button, give
-the key a name, and click &#8220;Create Keypair&#8221;.  Your browser will start
+for you.  You can do this by going to the DreamCompute dashboard, Access &amp;
+Security -&gt; Keypairs.  On the top right, click the &#8220;Create Keypair&#8221; button,
+give the key a name, and click &#8220;Create Keypair&#8221;.  Your browser will start
 downloading the private key named the same as they name given with a
 .pem file extension.  Save this file for later user as your id_rsa
 private key file.</p>
@@ -112,27 +111,27 @@ recommended default that you see in parenthesis</strong>).</p>
 <p>STEP 2: Enter a password (recommended). You can press enter twice to
 not have a password.</p>
 <p>The output looks like this:</p>
-<div class="code highlight-python"><div class="highlight"><pre><span></span>$ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/myuser/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/myuser/.ssh/id_rsa.
-Your public key has been saved in /home/myuser/.ssh/id_rsa.pub.
-The key fingerprint is:
-66:d9:a4:f0:8d:0b:72:93:b8:67:2e:af:f6:91:ce:e3 myuser@mycomputer
-The key&#39;s randomart image is:
-+--[ RSA 2048]----+
-|                 |
-|                 |
-|      .   .      |
-|     . + B       |
-|    o = S o      |
-|     + * .       |
-|    . = .        |
-|    o*..         |
-|   ..*E.         |
-+-----------------+
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ssh-keygen -t rsa
+<span class="go">Generating public/private rsa key pair.</span>
+<span class="go">Enter file in which to save the key (/home/myuser/.ssh/id_rsa):</span>
+<span class="go">Enter passphrase (empty for no passphrase):</span>
+<span class="go">Enter same passphrase again:</span>
+<span class="go">Your identification has been saved in /home/myuser/.ssh/id_rsa.</span>
+<span class="go">Your public key has been saved in /home/myuser/.ssh/id_rsa.pub.</span>
+<span class="go">The key fingerprint is:</span>
+<span class="go">66:d9:a4:f0:8d:0b:72:93:b8:67:2e:af:f6:91:ce:e3 myuser@mycomputer</span>
+<span class="go">The key&#39;s randomart image is:</span>
+<span class="go">+--[ RSA 2048]----+</span>
+<span class="go">|                 |</span>
+<span class="go">|                 |</span>
+<span class="go">|      .   .      |</span>
+<span class="go">|     . + B       |</span>
+<span class="go">|    o = S o      |</span>
+<span class="go">|     + * .       |</span>
+<span class="go">|    . = .        |</span>
+<span class="go">|    o*..         |</span>
+<span class="go">|   ..*E.         |</span>
+<span class="go">+-----------------+</span>
 </pre></div>
 </div>
 <p>The final step is to continue to the Import an Existing SSH Key
@@ -148,15 +147,15 @@ has no default extension.  You could search your system for .ppk files
 and perhaps find your public key in the same location.</p>
 <p>On Mac and Linux systems, you can check in the above
 described location:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls ~/.ssh/id_rsa*
-/home/myuser/.ssh/id_rsa  /home/myuser/.ssh/id_rsa.pub
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">[user@localhost]$</span> ls ~/.ssh/id_rsa*
+<span class="go">/home/myuser/.ssh/id_rsa  /home/myuser/.ssh/id_rsa.pub</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="import-an-existing-ssh-key-into-the-dashboard">
 <h2>Import an Existing SSH key into the Dashboard</h2>
 <p>Find the public key file, and open it to copy its contents.  Next, go
-to the DreamCompute <a class="reference external" href="https://dashboard.dreamcompute.com/project/access_and_security/?tab=access_security_tabs__keypairs_tab">Access &amp; Security - Keypairs</a> dashboard and
+to the DreamCompute dashboard, go to Access &amp; Security -&gt; Keypairs, and
 click on &#8220;Import Keypair&#8221;.  Give it a name and paste in the contents
 of your public key, then click &#8220;Import Keypair&#8221; to save it.</p>
 </div>
