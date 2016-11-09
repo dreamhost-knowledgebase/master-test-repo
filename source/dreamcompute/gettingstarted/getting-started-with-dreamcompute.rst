@@ -36,7 +36,7 @@ How to upload an SSH key via the Cloud Control Panel
 
 ========================
 Step #3: Launch a server
-=======================
+========================
 
 View the following article for details on how to launch a server:
 
