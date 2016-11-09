@@ -14,8 +14,8 @@ instance and log in.
 Step #1: Enable the DreamCompute service
 ========================================
 
-Log into your DreamHost panel at panel.dreamhost.com and navigate to the `(Panel
-> 'Cloud Services' > 'DreamCompute')`_ page.
+Log into your DreamHost panel at panel.dreamhost.com and navigate to the _`(Panel
+> 'Cloud Services' > 'DreamCompute')` <https://panel.dreamhost.com/index.cgi?tree=cloud.compute&>`_ page.
 
 Enter a password you'll use for the DreamCompute panel and click the Continue
 button. This enables the DreamCompute service.
