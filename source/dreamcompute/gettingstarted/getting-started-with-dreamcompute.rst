@@ -29,8 +29,8 @@ to your server instance.
 View the following articles for details on how to create these keys and upload
 them to the DreamCompute panel:
 
-How to upload an SSH key via the web UI
-How to upload an SSH key via the Cloud Control Panel
+- How to upload an SSH key via the web UI
+- How to upload an SSH key via the Cloud Control Panel
 
 
 ========================
